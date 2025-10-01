@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery } from "@apollo/client/react";
 import { GET_POPULAR_MOVIES } from "../lib/queries";
 

@@ -9,6 +9,7 @@ export const GET_POPULAR_MOVIES = gql`
       release_date
       poster_path
       vote_average
+      backdrop_path
     }
   }
 `;
@@ -47,6 +48,7 @@ export const GET_TOP_RATED_MOVIES = gql`
       release_date
       poster_path
       vote_average
+      backdrop_path
     }
   }
 `;

@@ -1,10 +1,11 @@
 import "./App.css";
-import Render from "./components/Render";
 import Hero from "./components/hero/Hero";
+import NavBar from "./components/nav-bar/NavBar";
 
 function App() {
   return (
     <div>
+      <NavBar />
       <Hero />
       {/* <Render /> */}
     </div>
