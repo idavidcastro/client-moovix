@@ -1,27 +1,24 @@
 import { useQuery } from "@apollo/client/react";
-import { GET_POPULAR_MOVIES } from "../../lib/queries";
 import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import "./custom.css";
-export default function Rated() {
-  const { loading, error, data } = useQuery(GET_POPULAR_MOVIES);
+import CardMovie from "./CardMovie";
+export default function MoviesCarousel({ title, link, query, classname = "" }) {
+  const { loading, error, data } = useQuery(query);
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error 😢: {error.message}</p>;
   return (
     <section id="rated" className="relative">
-      <div className="flex  items-center justify-between px-20 mt-12 mb-2">
-        <h2 className="text-primary text-xl font-bold text-center">
-          Rated movies
-        </h2>
-        <div className="flex    ">
-          <a href="#" className="text-primary text-xl font-bold text-center">
+      <div className="flex  items-center justify-between px-20 mt-12 mb-3">
+        <h2 className="text-primary text-2xl font-bold">{title}</h2>
+        <div className="flex items-end cursor-pointer">
+          <a href={link} className="text-primary text-xl font-bold text-center">
             Ver más
           </a>
-          <ChevronRight strokeWidth={1} />
+          <ChevronRight strokeWidth={2} className="text-primary" />
         </div>
       </div>
       <div className="pointer-events-none absolute top-0 left-0 h-full w-16 z-20 hidden md:block">
@@ -40,17 +37,15 @@ export default function Rated() {
         loop
         modules={[Navigation]}
         spaceBetween={10}
-        className="cursor-pointer z-50"
+        className="cursor-pointer"
       >
         {data.popularMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <div>
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt={movie.title}
-                className="object-cover h-full w-full rounded-lg"
-              />
-            </div>
+            <CardMovie
+              img_path={movie.poster_path}
+              title={movie.title}
+              classname={classname}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

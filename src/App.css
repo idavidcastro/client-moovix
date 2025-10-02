@@ -1,6 +1,6 @@
 @import "tailwindcss";
 body {
-  @apply bg-[#000101]; ;
+  @apply bg-[#000101] text-primary;
 }
 
 @theme {

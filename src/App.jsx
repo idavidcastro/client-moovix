@@ -1,22 +1,21 @@
 import "./App.css";
-import Footer from "./components/footer/Footer";
-import Hero from "./components/hero/Hero";
-import NavBar from "./components/nav-bar/NavBar";
-import Rated from "./components/rated/Rated";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
+import AllMovies from "./pages/all-movies/AllMovies";
+import MovieDetail from "./pages/movie-detail/MovieDetail";
+import Favorites from "./pages/favorites/Favorites";
 
 function App() {
   return (
-    <>
-      <NavBar />
-      <main>
-        <Hero />
-        {/* <Render /> */}
-        <Rated />
-        <Rated />
-        <Rated />
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/allmovies" element={<AllMovies />} />
+        {/* <Route path="/movie/:id" element={<MovieDetail />} /> */}
+        <Route path="/movie" element={<MovieDetail />} />
+        <Route path="/favorites" element={<Favorites />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
