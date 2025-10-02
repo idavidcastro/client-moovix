@@ -16,9 +16,7 @@ export default function MovieList({ movies }) {
           className="group bg-primary/10 rounded-xl overflow-hidden shadow-md flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-lg"
         >
           <CardMovie
-            img_path={movie.poster_path}
-            title={movie.title}
-            release_date={movie.release_date}
+            movie={movie}
             classname="h-[320px] aspect-auto object-cover"
           />
           <div className="p-3 flex-1 flex flex-col justify-between">
