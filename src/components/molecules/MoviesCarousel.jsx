@@ -41,11 +41,7 @@ export default function MoviesCarousel({ title, link, query }) {
       >
         {data.popularMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <CardMovie
-              img_path={movie.poster_path}
-              title={movie.title}
-              classname="h-[420px]"
-            />
+            <CardMovie movie={movie} classname="h-[420px]" />
           </SwiperSlide>
         ))}
       </Swiper>
