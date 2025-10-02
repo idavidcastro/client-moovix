@@ -20,6 +20,8 @@ export default function Hero() {
           "--swiper-pagination-color": "#fff",
         }}
         slidesPerView={1}
+        mousewheel={true}
+        cssMode={true}
         centeredSlides
         autoplay={{
           delay: 7000,
@@ -33,7 +35,6 @@ export default function Hero() {
         {data.popularMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
             <div className="relative h-screen w-full">
-              {/* Imagen de fondo */}
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 alt={movie.title}
@@ -47,8 +48,7 @@ export default function Hero() {
               </div>
 
               <div className="absolute left-6 md:left-16 bottom-20 md:bottom-28 z-20 text-primary">
-                {/* Puntuación elegante: badge cuadrado con borde y sombra */}
-                <div className="flex items-center mb-2">
+                <div className="flex items-center">
                   <div className="bg-primary/10 border border-secondary rounded px-1.5 flex items-center justify-center min-w-[24px] min-h-[20px]">
                     <span className="text-[10px] font-bold text-secondary text-center">
                       {movie.vote_average?.toFixed(1)}
