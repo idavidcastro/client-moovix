@@ -19,16 +19,16 @@ export default function NavBar() {
   }, []);
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300${
         scrolled
-          ? "bg-background/80 backdrop-blur-md shadow-lg"
+          ? "bg-background/80 backdrop-blur-md shadow-lg rounded-b-lg"
           : "bg-transparent"
       }`}
     >
       <div className="px-[5%] py-4 flex items-center justify-between">
-        <div className="text-white text-2xl font-bold">
+        <a href="/" className="text-white text-2xl font-bold cursor-pointer">
           moov<span className="text-secondary">i</span>x
-        </div>
+        </a>
         <ul className="hidden md:flex gap-8 text-primary font-medium">
           {links.map((link) => (
             <li key={link.name} className="relative group cursor-pointer">

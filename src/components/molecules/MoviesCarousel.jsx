@@ -6,13 +6,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import CardMovie from "./CardMovie";
-export default function MoviesCarousel({ title, link, query, classname = "" }) {
+export default function MoviesCarousel({ title, link, query }) {
   const { loading, error, data } = useQuery(query);
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error 😢: {error.message}</p>;
   return (
     <section id="rated" className="relative">
-      <div className="flex  items-center justify-between px-20 mt-12 mb-3">
+      <div className="flex items-center justify-between px-20 mt-12 mb-3">
         <h2 className="text-primary text-2xl font-bold">{title}</h2>
         <div className="flex items-end cursor-pointer">
           <a href={link} className="text-primary text-xl font-bold text-center">
@@ -44,7 +44,7 @@ export default function MoviesCarousel({ title, link, query, classname = "" }) {
             <CardMovie
               img_path={movie.poster_path}
               title={movie.title}
-              classname={classname}
+              classname="h-[420px]"
             />
           </SwiperSlide>
         ))}

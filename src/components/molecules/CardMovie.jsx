@@ -7,8 +7,7 @@ export default function CardMovie({ img_path, title, classname = "" }) {
         src={`https://image.tmdb.org/t/p/original${img_path}`}
         alt={title}
         className={
-          `object-cover w-full h-full block rounded-md aspect-auto min-h-[420px]` +
-          classname
+          `object-cover w-auto block rounded-md aspect-auto ` + classname
         }
       />
     </div>
