@@ -1,11 +1,11 @@
 @import "tailwindcss";
 body {
-  @apply bg-[#000101] ;
+  @apply bg-[#000101]; ;
 }
 
 @theme {
   --color-primary: #f8f8ff;
-  --color-secondary: #06b6d4;
+  --color-secondary: #0e7490;
   --color-third: #adb5bd;
-
+  --color-background: #10141e;
 }

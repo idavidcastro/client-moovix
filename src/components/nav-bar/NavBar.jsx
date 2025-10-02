@@ -1,66 +1,49 @@
-// import { useState } from "react";
-// import { Menu, X } from "lucide-react";
-import React from "react";
-import SplitText from "../ui/SplitText";
+import { Menu, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 export default function NavBar() {
-  //   const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const links = [
     { name: "Inicio", href: "#" },
     { name: "Películas", href: "#" },
     { name: "Series", href: "#" },
     { name: "Mi lista", href: "#" },
   ];
-  const [splitKey, setSplitKey] = React.useState(0);
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setSplitKey((k) => k + 1);
-    }, 10000);
-    return () => clearInterval(interval);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-transparent ">
-      <div className="px-20 py-4 flex items-center justify-between">
-        <div className="inline-block">
-          <SplitText
-            key={splitKey}
-            text={"moovix"}
-            className="text-2xl font-bold cursor-pointer"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            tag="div"
-            charStyles={(char) =>
-              char === "i"
-                ? {
-                    color: "#06b6d4",
-                    transition: "color 0.2s",
-                  }
-                : { color: "#fff" }
-            }
-          />
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="px-[5%] py-4 flex items-center justify-between">
+        <div className="text-white text-2xl font-bold">
+          moov<span className="text-secondary">i</span>x
         </div>
         <ul className="hidden md:flex gap-8 text-primary font-medium">
           {links.map((link) => (
             <li key={link.name} className="relative group cursor-pointer">
               <a href={link.href}>{link.name}</a>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-cyan-700 transition-all group-hover:w-full"></span>
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-secondary transition-all group-hover:w-full"></span>
             </li>
           ))}
         </ul>
-
-        {/* Botón menú móvil
-        <button className="md:hidden text-primary" onClick={() => setOpen(!open)}>
+        <button
+          className="md:hidden text-primary"
+          onClick={() => setOpen(!open)}
+        >
           {open ? <X size={28} /> : <Menu size={28} />}
-        </button> */}
+        </button>
       </div>
-
-      {/* Menú móvil
       <div
         className={`md:hidden bg-[#000101]/95 transition-all duration-300 ${
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
@@ -75,7 +58,7 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
-      </div> */}
+      </div>
     </nav>
   );
 }
