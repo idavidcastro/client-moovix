@@ -4,24 +4,26 @@ export default function Modal({ open, onClose, children }) {
     <div
       onClick={onClose}
       className={`
-        fixed z-50 inset-0 flex justify-center items-center transition-colors
-        ${open ? "visible bg-black/40" : "invisible"}
+        fixed z-50 inset-0 flex items-center justify-center transition-colors
+        ${open ? "visible bg-black/80" : "invisible"}
       `}
     >
-      {/* modal */}
       <div
         onClick={(e) => e.stopPropagation()}
         className={`
-          bg-white rounded-xl shadow p-6 transition-all
+          bg-bg-secondary rounded-sm shadow transition-all w-[900px] h-[400px]
           ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
         `}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 p-1 rounded-lg text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-600"
-        >
-          <X />
-        </button>
+        <div className="flex justify-between items-center p-2">
+          <h1>titulo</h1>
+          <button
+            onClick={onClose}
+            className="rounded-sm text-primary bg-secondary hover:bg-primary hover:text-secondary cursor-pointer"
+          >
+            <X size={22} />
+          </button>
+        </div>
         {children}
       </div>
     </div>

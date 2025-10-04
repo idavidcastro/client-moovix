@@ -80,24 +80,18 @@ export default function Hero() {
         ))}
       </Swiper>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <div className="text-center w-56">
-          <Trash size={56} className="mx-auto text-red-500" />
-          <div className="mx-auto my-4 w-48">
-            <h3 className="text-lg font-black text-gray-800">Confirm Delete</h3>
-            <p className="text-sm text-gray-500">
-              Are you sure you want to delete this item?
-            </p>
-          </div>
-          <div className="flex gap-4">
-            <button className="btn btn-danger w-full">Delete</button>
-            <button
-              className="btn btn-light w-full"
-              onClick={() => setOpen(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
+        {open && (
+          <iframe
+            width="100%"
+            height="500"
+            src="https://www.youtube.com/embed/vMLk_T0PPbk?si=_HVWLdbgx4dC7Wvv"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            className="rounded-b-sm w-full h-full"
+          />
+        )}
       </Modal>
     </section>
   );
