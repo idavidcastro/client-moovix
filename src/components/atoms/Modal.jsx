@@ -11,7 +11,7 @@ export default function Modal({ open, onClose, children }) {
       <div
         onClick={(e) => e.stopPropagation()}
         className={`
-          bg-bg-secondary rounded-sm shadow transition-all w-[900px] h-[400px]
+          bg-bg-secondary rounded-sm shadow transition-all w-[900px] h-[500px]
           ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
         `}
       >

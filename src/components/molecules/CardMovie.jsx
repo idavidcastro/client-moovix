@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import FavBtn from "../atoms/FavBtn";
 
 export default function CardMovie({ movie, classname = "" }) {
   return (
-    <Link to={`/movie/${movie.id}`}>
-      <div className="h-auto w-full">
+    <div className="relative w-full h-auto">
+      <Link to={`/movie/${movie.id}`}>
         <img
           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
           alt={movie.title}
@@ -11,7 +12,10 @@ export default function CardMovie({ movie, classname = "" }) {
             `object-cover w-auto block rounded-md aspect-auto ` + classname
           }
         />
+      </Link>
+      <div className="absolute z-10 top-2 right-2">
+        <FavBtn />
       </div>
-    </Link>
+    </div>
   );
 }

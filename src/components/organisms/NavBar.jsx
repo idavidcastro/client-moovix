@@ -7,7 +7,7 @@ export default function NavBar() {
     { name: "Inicio", href: "#" },
     { name: "Películas", href: "#" },
     { name: "Series", href: "#" },
-    { name: "Mi lista", href: "#" },
+    { name: "Mi lista", href: "/favorites" },
   ];
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -26,12 +26,12 @@ export default function NavBar() {
       }`}
     >
       <div className="px-[5%] py-4 flex items-center justify-between">
-        <a href="/" className="text-white text-2xl font-bold cursor-pointer">
+        <a href="/" className="text-2xl font-bold text-white cursor-pointer">
           moov<span className="text-secondary">i</span>x
         </a>
-        <ul className="hidden md:flex gap-8 text-primary font-medium">
+        <ul className="hidden gap-8 font-medium md:flex text-primary">
           {links.map((link) => (
-            <li key={link.name} className="relative group cursor-pointer">
+            <li key={link.name} className="relative cursor-pointer group">
               <a href={link.href}>{link.name}</a>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-secondary transition-all group-hover:w-full"></span>
             </li>
@@ -49,7 +49,7 @@ export default function NavBar() {
           open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         } overflow-hidden`}
       >
-        <ul className="flex flex-col gap-6 py-6 px-6 text-primary font-medium">
+        <ul className="flex flex-col gap-6 px-6 py-6 font-medium text-primary">
           {links.map((link) => (
             <li key={link.name}>
               <a href={link.href} onClick={() => setOpen(false)}>
