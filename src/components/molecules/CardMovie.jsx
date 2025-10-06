@@ -13,9 +13,6 @@ export default function CardMovie({ movie, classname = "" }) {
           }
         />
       </Link>
-      <div className="absolute z-10 top-2 right-2">
-        <FavBtn />
-      </div>
     </div>
   );
 }

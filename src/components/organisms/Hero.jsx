@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client/react";
 import { GET_POPULAR_MOVIES } from "../../lib/queries";
-import { Heart } from "lucide-react";
+import { Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Btn from "../atoms/Btn";
@@ -49,10 +49,26 @@ export default function Hero() {
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/100 to-transparent" />
               </div>
               <div className="absolute z-20 left-6 md:left-16 bottom-20 md:bottom-28 text-primary">
-                <div className="flex items-center">
-                  <div className="bg-primary/10 border border-secondary rounded px-1.5 flex items-center justify-center min-w-[24px] min-h-[20px]">
-                    <span className="text-[10px] font-bold text-secondary text-center">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center bg-primary/10 border border-secondary rounded-full px-2 py-1 shadow-sm">
+                    <Star className="w-3 h-3 text-secondary mr-1" />
+                    <span className="text-xs font-semibold text-secondary">
                       {movie.vote_average?.toFixed(1)}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col">
+                    <span className="text-xs text-secondary/80 uppercase tracking-wider">
+                      {movie.release_date
+                        ? new Date(movie.release_date).toLocaleDateString(
+                            "es-ES",
+                            {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )
+                        : "Fecha N/A"}
                     </span>
                   </div>
                 </div>
