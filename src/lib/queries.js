@@ -10,6 +10,13 @@ export const GET_POPULAR_MOVIES = gql`
       poster_path
       vote_average
       backdrop_path
+      adult
+      genre_ids
+      original_language
+      popularity
+      video
+      vote_count
+      original_title
     }
   }
 `;
@@ -49,6 +56,15 @@ export const GET_TOP_RATED_MOVIES = gql`
       poster_path
       vote_average
       backdrop_path
+    }
+  }
+`;
+
+export const GET_MOVIE_GENRES = gql`
+  query GetMovieGenres {
+    movieGenres {
+      id
+      name
     }
   }
 `;

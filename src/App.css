@@ -1,6 +1,7 @@
 @import "tailwindcss";
+
 body {
-  @apply bg-[#000101] text-primary;
+  @apply bg-[#000101] text-primary font-poppins;
 }
 
 @theme {
@@ -9,4 +10,5 @@ body {
   --color-third: #adb5bd;
   --color-bg: #10141e;
   --color-bg-secondary: #000101;
+
 }

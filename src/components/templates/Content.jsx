@@ -1,6 +1,6 @@
 import MoviesCarousel from "../molecules/MoviesCarousel";
 import { GET_POPULAR_MOVIES } from "../../lib/queries";
-import Hero from "../organisms/Hero";
+import Hero from "../organisms/Hero/index.jsx";
 
 export default function Content() {
   return (
