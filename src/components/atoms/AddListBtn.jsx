@@ -23,7 +23,7 @@ function AddListBtn({ movie, className = "", onChange }) {
 
   return (
     <button
-      className={`rounded-full p-2 text-primary hover:scale-110 transition-transform bg-primary/10 border border-primary/20 cursor-pointer ease-in-out duration-500 ${
+      className={`rounded-full p-2 text-primary hover:scale-110 transition-transform bg-primary/20 cursor-pointer ease-in-out duration-500 ${
         fav
           ? "bg-primary text-bg hover:bg-primary hover:text-bg"
           : "hover:bg-primary hover:text-bg"
