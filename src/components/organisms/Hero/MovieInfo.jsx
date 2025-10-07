@@ -8,8 +8,8 @@ import BtnInfo from "../../atoms/BtnInfo";
 export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
   return (
     <div>
-      <div className="flex items-center gap-4">
-        <div className="flex items-center px-2 py-1 border rounded-full shadow-sm bg-primary/10 border-secondary">
+      <div className="flex items-center">
+        <div className="flex items-center px-2 py-1 border rounded-md shadow-sm bg-primary/10 border-secondary">
           <FaStar className="w-3 h-3 mr-1 text-secondary" />
           <span className="text-xs font-semibold text-secondary">
             {movie.vote_average?.toFixed(1)}
@@ -34,28 +34,26 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
           {movie.title}
         </h2>
 
-        <p className="max-w-lg mt-4 text-sm md:text-base text-third/90 opacity-0 translate-y-3 max-h-0 overflow-hidden transition-all duration-700 ease-in-out delay-100 group-hover:opacity-100 group-hover:translate-y-0 group-hover:max-h-[300px] group-hover:delay-0">
+        <p className="max-w-lg text-sm md:text-base text-third/90 opacity-0 translate-y-3 max-h-0 overflow-hidden transition-all duration-700 ease-in-out delay-100 group-hover:opacity-100 group-hover:translate-y-0 group-hover:max-h-[300px] group-hover:delay-0">
           {movie.overview}
         </p>
       </div>
       <div className="flex flex-wrap gap-2 mt-2">
-        {" "}
         {movie.genre_ids.map((id) => (
           <span
             key={id}
-            className="px-3 py-1 text-xs border rounded-sm bg-primary/10 text-primary border-primary/20 "
+            className="px-3 py-1 text-xs border rounded-md uppercase bg-primary/10 text-primary border-primary/20 "
           >
             {" "}
             {genreMap.get(id) || "Desconocido"}{" "}
           </span>
-        ))}{" "}
+        ))}
       </div>
 
       <div className="flex items-center gap-4 mt-6">
         <Btn
           name="Ver trailer"
           onClick={() => onOpenTrailer && onOpenTrailer(movie)}
-          className="gap-3 px-5 py-3 font-medium transition rounded-md shadow-md cursor-pointer bg-secondary text-primary hover:bg-secondary/90"
           icon={<IoIosPlay size={24} />}
         />
         <AddListBtn movie={movie} />

@@ -18,7 +18,7 @@ export default function TrailerModal({ open, onClose, movie }) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             referrerPolicy="strict-origin-when-cross-origin"
-            className="w-full h-full rounded-b-sm"
+            className="w-full h-full rounded-b-md"
           />
         </div>
       )}

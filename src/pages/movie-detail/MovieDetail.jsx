@@ -26,7 +26,7 @@ export default function MovieDetail() {
       <img
         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
         alt={movie.title}
-        className="w-64 rounded-lg shadow-lg mx-auto"
+        className="w-64 rounded-md shadow-lg mx-auto"
       />
       <p className="text-white/80 text-lg mt-4">{movie.overview}</p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4 text-white/60">

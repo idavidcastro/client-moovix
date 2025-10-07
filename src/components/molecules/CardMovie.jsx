@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import FavBtn from "../atoms/FavBtn";
 
 export default function CardMovie({ movie, classname = "" }) {
   return (

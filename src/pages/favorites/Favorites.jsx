@@ -24,7 +24,7 @@ function Favorites() {
           <div
             key={movie.id}
             aria-label={`Movie: ${movie.title}`}
-            className="flex flex-col overflow-hidden transition-transform duration-300 shadow-md cursor-pointer group bg-primary/10 rounded-xl hover:scale-105 hover:shadow-lg"
+            className="flex flex-col overflow-hidden transition-transform duration-300 shadow-md cursor-pointer group bg-primary/10 rounded-md hover:scale-105 hover:shadow-lg"
           >
             <div className="relative w-full h-auto">
               <Link to={`/movie/${movie.id}`}>

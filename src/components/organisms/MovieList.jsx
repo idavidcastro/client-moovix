@@ -13,7 +13,7 @@ export default function MovieList({ movies }) {
         <div
           key={movie.id}
           aria-label={`Movie: ${movie.title}`}
-          className="group bg-primary/10 rounded-xl overflow-hidden shadow-md flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+          className="group bg-primary/10 rounded-md overflow-hidden shadow-md flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-lg"
         >
           <CardMovie
             movie={movie}
