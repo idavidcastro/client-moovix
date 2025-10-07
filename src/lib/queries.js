@@ -46,6 +46,18 @@ export const GET_MOVIE_BY_ID = gql`
     }
   }
 `;
+
+export const GET_MOVIE_VIDEOS = gql`
+  query GetMovieVideos($movieId: ID!) {
+    getMovieVideos(movieId: $movieId) {
+      key
+      site
+      type
+      name
+    }
+  }
+`;
+
 export const GET_TOP_RATED_MOVIES = gql`
   query GetTopRatedMovies {
     topRatedMovies {

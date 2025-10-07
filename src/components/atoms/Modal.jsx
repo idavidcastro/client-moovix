@@ -1,30 +1,28 @@
 import { X } from "lucide-react";
-export default function Modal({ open, onClose, children }) {
+
+export default function Modal({ open, onClose, children, title }) {
+  if (!open) return null;
+
   return (
     <div
       onClick={onClose}
-      className={`
-        fixed z-50 inset-0 flex items-center justify-center transition-colors
-        ${open ? "visible bg-black/80" : "invisible"}
-      `}
+      className="fixed z-50 inset-0 flex items-center justify-center bg-black/80 animate-fadeIn"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`
-          bg-bg-secondary rounded-md shadow transition-all w-[900px] h-[500px] flex flex-col justify-center items-center
-          ${open ? "scale-100 opacity-100" : "scale-125 opacity-0"}
-        `}
+        className="bg-bg-secondary rounded-lg shadow-xl w-[900px] max-w-[90vw] h-[500px] max-h-[90vh] flex flex-col animate-modalShow"
       >
-        <div className="flex items-center justify-between p-2">
-          <h1>titulo</h1>
+        <div className="flex items-center justify-between p-3">
+          <h2 className="text-xl font-medium text-primary">{title}</h2>
           <button
             onClick={onClose}
-            className="rounded-sm cursor-pointer text-primary bg-secondary hover:bg-primary hover:text-secondary"
+            className="p-1  text-primary cursor-pointer"
+            aria-label="Cerrar"
           >
-            <X size={22} />
+            <X size={26} />
           </button>
         </div>
-        {children}
+        <div className="flex-1 overflow-hidden">{children}</div>
       </div>
     </div>
   );
