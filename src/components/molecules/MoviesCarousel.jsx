@@ -58,7 +58,7 @@ export default function MoviesCarousel({ title, link, query }) {
         spaceBetween={10}
         className="cursor-pointer px-2 sm:px-4 md:px-6"
       >
-        {data.popularMovies.map((movie) => (
+        {data[Object.keys(data)[0]].map((movie) => (
           <SwiperSlide key={movie.id}>
             <CardMovie
               movie={movie}

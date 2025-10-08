@@ -91,6 +91,26 @@ export const GET_TOP_RATED_MOVIES = gql`
   }
 `;
 
+export const GET_UPCOMING_MOVIES = gql`
+  query GetUpcomingMovies {
+    upcomingMovies {
+      id
+      title
+      overview
+      release_date
+      poster_path
+      vote_average
+      backdrop_path
+      adult
+      genre_ids
+      original_language
+      popularity
+      vote_count
+      original_title
+    }
+  }
+`;
+
 export const GET_MOVIE_GENRES = gql`
   query GetMovieGenres {
     movieGenres {
