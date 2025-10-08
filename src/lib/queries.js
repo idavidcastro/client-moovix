@@ -14,7 +14,26 @@ export const GET_POPULAR_MOVIES = gql`
       genre_ids
       original_language
       popularity
-      video
+      vote_count
+      original_title
+    }
+  }
+`;
+
+export const GET_NOW_PLAYING_MOVIES = gql`
+  query GetNowPlayingMovies {
+    nowPlayingMovies {
+      id
+      title
+      overview
+      release_date
+      poster_path
+      vote_average
+      backdrop_path
+      adult
+      genre_ids
+      original_language
+      popularity
       vote_count
       original_title
     }

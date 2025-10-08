@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client/react";
-import { GET_POPULAR_MOVIES, GET_MOVIE_GENRES } from "../../../lib/queries";
+import { GET_NOW_PLAYING_MOVIES, GET_MOVIE_GENRES } from "../../../lib/queries";
 import HeroCarousel from "./HeroCarousel";
 import TrailerModal from "./TrailerModal";
 import { useMemo, useState } from "react";
 
 export default function Hero() {
-  const { loading: loadingMovies, data } = useQuery(GET_POPULAR_MOVIES);
+  const { loading: loadingMovies, data } = useQuery(GET_NOW_PLAYING_MOVIES);
   const { data: genreData, loading: loadingGenres } =
     useQuery(GET_MOVIE_GENRES);
 
@@ -29,12 +29,12 @@ export default function Hero() {
 
   if (loadingMovies || loadingGenres)
     return <p className="text-center">Cargando...</p>;
-  if (!data?.popularMovies?.length) return null;
+  if (!data?.nowPlayingMovies?.length) return null;
 
   return (
     <>
       <HeroCarousel
-        movies={data.popularMovies}
+        movies={data.nowPlayingMovies}
         genreMap={genreMap}
         onOpenTrailer={handleOpenTrailer}
       />

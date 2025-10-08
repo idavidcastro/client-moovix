@@ -7,7 +7,7 @@ export default function Content() {
     <main className="space-y-6">
       <Hero />
       <MoviesCarousel
-        title="Rated Movies"
+        title="Popular Movies"
         link="/allmovies"
         query={GET_POPULAR_MOVIES}
       />
