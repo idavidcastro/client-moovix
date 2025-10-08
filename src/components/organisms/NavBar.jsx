@@ -1,5 +1,6 @@
 import { Menu, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { MdMenu } from "react-icons/md";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function NavBar() {
   }, []);
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300${
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
         scrolled
           ? "bg-background/80 backdrop-blur-md shadow-lg rounded-b-md"
           : "bg-transparent"
@@ -40,7 +41,7 @@ export default function NavBar() {
           className="md:hidden text-primary"
           onClick={() => setOpen(!open)}
         >
-          {open ? <X size={28} /> : <Menu size={28} />}
+          {open ? <X size={24} /> : <MdMenu size={24} />}
         </button>
       </div>
       <div

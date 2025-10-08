@@ -16,7 +16,7 @@ body {
 /* mobile*/
 .swiper-button-next,
 .swiper-button-prev {
-  --swiper-navigation-size: 24px;
+  --swiper-navigation-size: 20px;
 }
 
 /* tablet */

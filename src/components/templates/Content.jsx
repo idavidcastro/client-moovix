@@ -11,19 +11,19 @@ export default function Content() {
     <main className="space-y-6">
       <Hero />
       <MoviesCarousel
-        title="Popular Movies"
+        title="Populares"
         link="/allmovies"
         query={GET_POPULAR_MOVIES}
       />
       <MoviesCarousel
-        title="Top Rated Movies"
-        link="/top-rated"
+        title="Mejor Valoradas"
+        link="/allmovies"
         query={GET_TOP_RATED_MOVIES}
         variant="horizontal"
       />
       <MoviesCarousel
-        title="Upcoming Movies"
-        link="/upcoming"
+        title="Próximos Estrenos"
+        link="/allmovies"
         query={GET_UPCOMING_MOVIES}
       />
     </main>
