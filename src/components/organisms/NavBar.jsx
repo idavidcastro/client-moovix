@@ -33,7 +33,6 @@ export default function NavBar() {
           {links.map((link) => (
             <li key={link.name} className="relative cursor-pointer group">
               <a href={link.href}>{link.name}</a>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-secondary transition-all group-hover:w-full"></span>
             </li>
           ))}
         </ul>

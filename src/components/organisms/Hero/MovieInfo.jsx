@@ -6,7 +6,7 @@ import BtnInfo from "../../atoms/BtnInfo";
 
 export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
   return (
-    <div>
+    <>
       <div className="flex items-center">
         <div className="flex items-center">
           <FaStar className="w-2 h-2 sm:w-3 sm:h-3 mr-1 text-yellow-400" />
@@ -49,6 +49,6 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
         <AddListBtn movie={movie} />
         <BtnInfo movie={movie} />
       </div>
-    </div>
+    </>
   );
 }

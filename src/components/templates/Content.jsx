@@ -4,7 +4,7 @@ import Hero from "../organisms/Hero/index.jsx";
 
 export default function Content() {
   return (
-    <main>
+    <main className="space-y-6">
       <Hero />
       <MoviesCarousel
         title="Rated Movies"

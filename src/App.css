@@ -12,3 +12,25 @@ body {
   --color-bg-secondary: #000101;
 
 }
+
+/* mobile*/
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-size: 24px;
+}
+
+/* tablet */
+@media (min-width: 640px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    --swiper-navigation-size: 36px;
+  }
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    --swiper-navigation-size: 48px;
+  }
+}

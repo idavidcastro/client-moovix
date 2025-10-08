@@ -12,13 +12,18 @@ export default function MoviesCarousel({ title, link, query }) {
   if (error) return <p>Error 😢: {error.message}</p>;
   return (
     <section id="rated" className="relative">
-      <div className="flex items-center justify-between px-20 mt-12 mb-3">
-        <h2 className="text-primary text-2xl font-bold">{title}</h2>
-        <div className="flex items-end cursor-pointer">
-          <a href={link} className="text-primary text-xl font-bold text-center">
+      <div className="flex items-center justify-between px-[5%]  mb-2 sm:mb-3">
+        <h2 className="text-primary text-lg sm:text-xl md:text-2xl font-bold">
+          {title}
+        </h2>
+        <div className="flex items-center cursor-pointer">
+          <a
+            href={link}
+            className="text-primary text-base sm:text-lg md:text-xl font-bold text-center"
+          >
             Ver más
           </a>
-          <ChevronRight strokeWidth={2} className="text-primary" />
+          <ChevronRight className="text-primary w-5 h-5 sm:w-8 sm:h-8 md:w-6 md:h-6" />
         </div>
       </div>
       <div className="pointer-events-none absolute top-0 left-0 h-full w-16 z-20 hidden md:block">
@@ -30,18 +35,35 @@ export default function MoviesCarousel({ title, link, query }) {
       <Swiper
         style={{
           "--swiper-navigation-color": "white",
-          "--swiper-navigation-size": "30px",
+          "--swiper-navigation-size": "20px",
         }}
-        slidesPerView={6}
+        slidesPerView={3}
+        breakpoints={{
+          640: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 6,
+            spaceBetween: 20,
+          },
+        }}
         navigation
         loop
         modules={[Navigation]}
         spaceBetween={10}
-        className="cursor-pointer"
+        className="cursor-pointer px-2 sm:px-4 md:px-6"
       >
         {data.popularMovies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <CardMovie movie={movie} classname="h-[420px]" />
+            <CardMovie
+              movie={movie}
+              classname="h-[200px] sm:h-[280px] md:h-[340px] lg:h-[420px]"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
