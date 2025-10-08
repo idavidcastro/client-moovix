@@ -1,6 +1,7 @@
 import Modal from "../../atoms/Modal";
 import { useQuery } from "@apollo/client/react";
 import { GET_MOVIE_VIDEOS } from "../../../lib/queries";
+import LoadingSpinner from "../../atoms/LoadingSpinner";
 
 export default function TrailerModal({ open, onClose, movie }) {
   const { data: videoData, loading } = useQuery(GET_MOVIE_VIDEOS, {
@@ -21,9 +22,7 @@ export default function TrailerModal({ open, onClose, movie }) {
       {open && (
         <div className="relative block w-full h-full overflow-hidden">
           {loading ? (
-            <div className="flex items-center justify-center h-full">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-            </div>
+            <LoadingSpinner size="xl" />
           ) : videoUrl ? (
             <iframe
               width="100%"

@@ -5,10 +5,10 @@ import { MdMenu } from "react-icons/md";
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   const links = [
-    { name: "Inicio", href: "#" },
-    { name: "Películas", href: "#" },
-    { name: "Series", href: "#" },
-    { name: "Mi lista", href: "/favorites" },
+    { name: "Populares", href: "#" },
+    { name: "Mejor Valoradas", href: "#" },
+    { name: "Próximamente", href: "#" },
+    { name: "Mi Lista", href: "/favorites" },
   ];
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -18,10 +18,22 @@ export default function NavBar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [open]);
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-        scrolled
+        scrolled || open
           ? "bg-background/80 backdrop-blur-md shadow-lg rounded-b-md"
           : "bg-transparent"
       }`}
@@ -45,11 +57,13 @@ export default function NavBar() {
         </button>
       </div>
       <div
-        className={`md:hidden bg-[#000101]/95 transition-all duration-300 ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } overflow-hidden`}
+        className={`md:hidden transition-all duration-300 items-center flex justify-center ${
+          open
+            ? "bg-background/80 backdrop-blur-md shadow-lg rounded-b-md opacity-100"
+            : "max-h-0 opacity-0"
+        } overflow-hidden h-screen`}
       >
-        <ul className="flex flex-col gap-6 px-6 py-6 font-medium text-primary">
+        <ul className="flex flex-col gap-6 font-medium text-primary text-center">
           {links.map((link) => (
             <li key={link.name}>
               <a href={link.href} onClick={() => setOpen(false)}>

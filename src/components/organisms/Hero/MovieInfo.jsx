@@ -20,7 +20,7 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-primary font-medium leading-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] cursor-pointer">
           {movie.title}
         </h2>
-        <p className="hidden lg:block max-w-lg text-xs sm:text-sm md:text-base lg:text-lg text-third/90">
+        <p className="hidden lg:block max-w-lg text-xs sm:text-sm md:text-base lg:text-lg text-third/90 overflow-hidden">
           {movie.overview}
         </p>
       </div>
