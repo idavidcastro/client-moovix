@@ -6,13 +6,57 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import CardMovie from "./CardMovie";
-export default function MoviesCarousel({ title, link, query }) {
+import CardMovieHorizontal from "./CardMovieHorizontal";
+
+export default function MoviesCarousel({
+  title,
+  link,
+  query,
+  variant = "vertical",
+}) {
   const { loading, error, data } = useQuery(query);
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error 😢: {error.message}</p>;
+
+  const isHorizontal = variant === "horizontal";
+  const movies = data[Object.keys(data)[0]];
+
+  const swiperConfig = {
+    slidesPerView: isHorizontal ? 2 : 3,
+    breakpoints: isHorizontal
+      ? {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+        }
+      : {
+          640: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 6,
+            spaceBetween: 20,
+          },
+        },
+  };
+
   return (
     <section id="rated" className="relative">
-      <div className="flex items-center justify-between px-[5%]  mb-2 sm:mb-3">
+      <div className="flex items-center justify-between px-[5%] mb-2 sm:mb-3">
         <h2 className="text-primary text-lg sm:text-xl md:text-2xl font-bold">
           {title}
         </h2>
@@ -37,33 +81,26 @@ export default function MoviesCarousel({ title, link, query }) {
           "--swiper-navigation-color": "white",
           "--swiper-navigation-size": "20px",
         }}
-        slidesPerView={3}
-        breakpoints={{
-          640: {
-            slidesPerView: 4,
-            spaceBetween: 15,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 6,
-            spaceBetween: 20,
-          },
-        }}
+        {...swiperConfig}
         navigation
         loop
         modules={[Navigation]}
         spaceBetween={10}
         className="cursor-pointer px-2 sm:px-4 md:px-6"
       >
-        {data[Object.keys(data)[0]].map((movie) => (
+        {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <CardMovie
-              movie={movie}
-              classname="h-[200px] sm:h-[280px] md:h-[340px] lg:h-[420px]"
-            />
+            {isHorizontal ? (
+              <CardMovieHorizontal
+                movie={movie}
+                className="h-[110px] md:h-[150px] lg:h-[200px]"
+              />
+            ) : (
+              <CardMovie
+                movie={movie}
+                className="h-[200px] md:h-[340px] lg:h-[520px]"
+              />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>

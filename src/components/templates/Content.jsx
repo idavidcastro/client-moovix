@@ -19,6 +19,7 @@ export default function Content() {
         title="Top Rated Movies"
         link="/top-rated"
         query={GET_TOP_RATED_MOVIES}
+        variant="horizontal"
       />
       <MoviesCarousel
         title="Upcoming Movies"
