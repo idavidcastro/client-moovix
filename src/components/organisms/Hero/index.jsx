@@ -3,6 +3,7 @@ import { GET_NOW_PLAYING_MOVIES, GET_MOVIE_GENRES } from "../../../lib/queries";
 import HeroCarousel from "./HeroCarousel";
 import TrailerModal from "./TrailerModal";
 import { useMemo, useState } from "react";
+import HeroSkeleton from "../../skeletons/HeroSkeleton";
 
 export default function Hero() {
   const { loading: loadingMovies, data } = useQuery(GET_NOW_PLAYING_MOVIES);
@@ -27,8 +28,7 @@ export default function Hero() {
     setSelectedMovie(null);
   }
 
-  if (loadingMovies || loadingGenres)
-    return <p className="text-center">Cargando...</p>;
+  if (loadingMovies || loadingGenres) return <HeroSkeleton />;
   if (!data?.nowPlayingMovies?.length) return null;
 
   return (
