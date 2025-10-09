@@ -10,13 +10,15 @@ body {
   --color-third: #adb5bd;
   --color-bg: #10141e;
   --color-bg-secondary: #000101;
-
+   --breakpoint-xs: 30rem;
 }
+
 
 /* mobile*/
 .swiper-button-next,
 .swiper-button-prev {
   --swiper-navigation-size: 20px;
+  --swiper-navigation-color: white;
 }
 
 /* tablet */

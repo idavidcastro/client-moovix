@@ -13,10 +13,6 @@ export default function HeroCarousel({ movies, genreMap, onOpenTrailer }) {
         pagination={{ clickable: true }}
         navigation
         modules={[Pagination, Navigation, Autoplay]}
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>

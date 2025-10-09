@@ -5,27 +5,46 @@ import {
   GET_UPCOMING_MOVIES,
 } from "../../lib/queries";
 import Hero from "../organisms/Hero/index.jsx";
+import useMoviesQuery from "../../hooks/useMoviesQuery";
 
 export default function Content() {
+  const popular = useMoviesQuery(GET_POPULAR_MOVIES);
+  const topRated = useMoviesQuery(GET_TOP_RATED_MOVIES);
+  const upcoming = useMoviesQuery(GET_UPCOMING_MOVIES);
+
   return (
     <main className="space-y-6">
-      <Hero />
-      <MoviesCarousel
-        title="Populares"
-        link="/allmovies"
-        query={GET_POPULAR_MOVIES}
-      />
-      <MoviesCarousel
-        title="Mejor Valoradas"
-        link="/allmovies"
-        query={GET_TOP_RATED_MOVIES}
-        variant="horizontal"
-      />
-      <MoviesCarousel
-        title="Próximos Estrenos"
-        link="/allmovies"
-        query={GET_UPCOMING_MOVIES}
-      />
+      <section id="hero">
+        <Hero />
+      </section>
+      <section id="popular">
+        <MoviesCarousel
+          title="Populares"
+          link="/allmovies"
+          movies={popular.movies}
+          loading={popular.loading}
+          error={popular.error}
+        />
+      </section>
+      <section id="top-rated">
+        <MoviesCarousel
+          title="Recomendadas"
+          link="/allmovies"
+          movies={topRated.movies}
+          loading={topRated.loading}
+          error={topRated.error}
+          variant="horizontal"
+        />
+      </section>
+      <section id="upcoming">
+        <MoviesCarousel
+          title="Próximos Estrenos"
+          link="/allmovies"
+          movies={upcoming.movies}
+          loading={upcoming.loading}
+          error={upcoming.error}
+        />
+      </section>
     </main>
   );
 }
