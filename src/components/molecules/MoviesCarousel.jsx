@@ -62,7 +62,7 @@ export default function MoviesCarousel({
   if (!movies || movies.length === 0) return null;
 
   return (
-    <div id="rated" className="relative">
+    <div className="relative">
       <div className="flex items-center justify-between px-[5%] mb-2 sm:mb-3">
         <h2 className="text-primary text-lg sm:text-xl md:text-2xl font-bold">
           {title}
