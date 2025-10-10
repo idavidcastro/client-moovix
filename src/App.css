@@ -21,6 +21,17 @@ body {
   --swiper-navigation-color: white;
 }
 
+/* Paginación (bullets) */
+.swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+  opacity: 1;
+}
+
 /* tablet */
 @media (min-width: 640px) {
   .swiper-button-next,

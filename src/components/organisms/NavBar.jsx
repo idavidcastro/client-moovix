@@ -6,7 +6,7 @@ export default function NavBar() {
   const [open, setOpen] = useState(false);
   const links = [
     { name: "Populares", href: "#popular" },
-    { name: "Recomendadas", href: "#recommended" },
+    { name: "Recomendadas", href: "#top-rated" },
     { name: "Próximamente", href: "#upcoming" },
     { name: "Mi Lista", href: "/favorites" },
   ];
