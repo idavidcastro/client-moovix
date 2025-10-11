@@ -20,7 +20,7 @@ export default function Content() {
       <section id="popular">
         <MoviesCarousel
           title="Populares"
-          link="/allmovies"
+          link="/allmovies?category=popular"
           movies={popular.movies}
           loading={popular.loading}
           error={popular.error}
@@ -29,7 +29,7 @@ export default function Content() {
       <section id="top-rated">
         <MoviesCarousel
           title="Recomendadas"
-          link="/allmovies"
+          link="/allmovies?category=top-rated"
           movies={topRated.movies}
           loading={topRated.loading}
           error={topRated.error}
@@ -38,8 +38,8 @@ export default function Content() {
       </section>
       <section id="upcoming">
         <MoviesCarousel
-          title="Próximos Estrenos"
-          link="/allmovies"
+          title="Próximamente"
+          link="/allmovies?category=upcoming"
           movies={upcoming.movies}
           loading={upcoming.loading}
           error={upcoming.error}

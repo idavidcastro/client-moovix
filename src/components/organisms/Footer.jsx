@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className="flex flex-col items-center justify-center gap-6 p-6 mt-6 bg-transparent">
       <div>
@@ -34,5 +25,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

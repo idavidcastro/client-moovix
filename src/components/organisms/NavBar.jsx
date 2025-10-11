@@ -1,5 +1,5 @@
-import { Menu, X } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { MdMenu } from "react-icons/md";
 
 export default function NavBar() {
@@ -11,6 +11,27 @@ export default function NavBar() {
     { name: "Mi Lista", href: "/favorites" },
   ];
   const [scrolled, setScrolled] = useState(false);
+
+  const handleLinkClick = (e, href) => {
+    // Si es un link a otra página, deja que navegue normalmente
+    if (href.startsWith("/")) return;
+
+    // Si es un anchor link (#), prevenir el comportamiento por defecto y hacer scroll suave
+    e.preventDefault();
+    setOpen(false); // Cerrar menú móvil
+
+    const target = document.querySelector(href);
+    if (target) {
+      const navHeight = 80; // Altura del navbar + margen extra
+      const targetPosition = target.offsetTop - navHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -45,7 +66,12 @@ export default function NavBar() {
         <ul className="hidden gap-8 font-medium md:flex text-primary">
           {links.map((link) => (
             <li key={link.name} className="relative cursor-pointer group">
-              <a href={link.href}>{link.name}</a>
+              <a
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+              >
+                {link.name}
+              </a>
             </li>
           ))}
         </ul>
@@ -66,7 +92,10 @@ export default function NavBar() {
         <ul className="flex flex-col gap-6 font-medium text-primary text-center">
           {links.map((link) => (
             <li key={link.name}>
-              <a href={link.href} onClick={() => setOpen(false)}>
+              <a
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+              >
                 {link.name}
               </a>
             </li>

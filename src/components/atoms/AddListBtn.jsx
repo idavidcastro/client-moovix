@@ -13,8 +13,6 @@ function AddListBtn({ movie, className = "", onChange }) {
     }
     toggle(movie);
     if (typeof onChange === "function") {
-      // la comunicación con la lista actualizada se maneja en el hook via evento
-      // pero mantenemos el callback para compatibilidad
       const raw = localStorage.getItem("myList");
       const list = raw ? JSON.parse(raw) : [];
       onChange(list);

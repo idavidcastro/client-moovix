@@ -10,9 +10,8 @@ export default function HeroCarousel({ movies, genreMap, onOpenTrailer }) {
         centeredSlides
         loop={movies.length > 1}
         autoplay={{ delay: 10000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
         navigation
-        modules={[Pagination, Navigation, Autoplay]}
+        modules={[Navigation, Autoplay]}
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>

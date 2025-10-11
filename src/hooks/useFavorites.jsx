@@ -27,9 +27,10 @@ export default function useFavorites() {
     };
 
     const onCustom = (e) => {
-      // evento dispatchado internamente para sincronizar en la misma pestaña
       if (e?.detail) {
-        setFavorites(Array.isArray(e.detail) ? e.detail : []);
+        const list = Array.isArray(e.detail) ? e.detail : [];
+        // Diferir actualización para no ejecutarla durante un render activo
+        setTimeout(() => setFavorites(list), 0);
       }
     };
 

@@ -82,19 +82,14 @@ export default function MoviesCarousel({
         navigation
         loop
         modules={[Navigation]}
-        spaceBetween={12}
-        className="cursor-pointer px-2 sm:px-4 md:px-6"
+        spaceBetween={8}
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
             <CardMovie
               movie={movie}
               variant={variant}
-              className={
-                isHorizontal
-                  ? "h-[100px] xs:h-[120px] sm:h-[140px] md:h-[150px] lg:h-[160px] xl:h-[180px] 2xl:h-[200px]"
-                  : "h-[200px] xs:h-[300px] sm:h-[300px] md:h-[350px] lg:h-[480px] xl:h-[480px] 2xl:h-[520px]"
-              }
+              // className="lg:transition-transform lg:duration-300 lg:group-hover:scale-90 rounded-sm hover:rounded-sm"
             />
           </SwiperSlide>
         ))}
