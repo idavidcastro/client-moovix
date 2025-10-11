@@ -5,9 +5,9 @@ import { MdMenu } from "react-icons/md";
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   const links = [
-    { name: "Populares", href: "#popular" },
-    { name: "Recomendadas", href: "#top-rated" },
-    { name: "Próximamente", href: "#upcoming" },
+    { name: "Populares", href: "/allmovies?category=popular" },
+    { name: "Recomendadas", href: "/allmovies?category=top-rated" },
+    { name: "Próximamente", href: "/allmovies?category=upcoming" },
     { name: "Mi Lista", href: "/favorites" },
   ];
   const [scrolled, setScrolled] = useState(false);

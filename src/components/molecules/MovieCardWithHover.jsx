@@ -21,21 +21,20 @@ export default function MovieCardWithHover({ movie, onOpenTrailer }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative">
+      <div>
         <Card movie={movie} variant="horizontal" />
-        <span className="absolute bottom-2 right-2 opacity-60 text-primary text-[10px] font-bold  px-2 py-0.5 z-10 no-underline select-none">
+        <span className="absolute bottom-2 right-2 opacity-60 text-primary text-[10px] font-bold px-2 py-0.5 z-10 no-underline select-none">
           moovix
         </span>
       </div>
-
       {/* Hover content - solo visible en desktop (lg+) */}
       <div
         className={`hidden lg:block absolute left-0 right-0 bg-bg-secondary rounded-b-lg shadow-2xl transition-all duration-100 z-20 ${
           isHovered
             ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-[-10px] pointer-events-none"
+            : "opacity-0 translate-y-[-8px] pointer-events-none"
         }`}
-        style={{ top: "100%" }}
+        style={{ top: "calc(100% - 8px)" }}
       >
         <div className="p-3 space-y-2">
           {/* Título y rating */}
@@ -57,24 +56,24 @@ export default function MovieCardWithHover({ movie, onOpenTrailer }) {
             </div>
           </div>
           {/* Grupo de botones - versión mejorada y responsiva */}
-          <div className="flex items-center gap-2 w-full">
+          <div className="flex flex-col items-start gap-2 w-full">
             {/* Botón de trailer */}
             <Btn
-              name="Ver Trailer"
+              name="Ver trailer"
               onClick={() => onOpenTrailer?.(movie)}
-              icon={<IoIosPlay size={18} />}
-              className="flex-1 px-3 py-1.5 text-xs sm:text-sm gap-1 justify-center w-full"
+              icon={<IoIosPlay size={24} />}
+              className="w-full px-3 py-1.5 text-xs sm:text-lg gap-1 justify-center"
             />
 
             {/* Botones secundarios */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <AddListBtn
                 movie={movie}
-                className="p-1.5 sm:p-2 shrink-0 hover:scale-110 transition-transform"
+                className="shrink-0 hover:scale-110 transition-transform"
               />
               <BtnInfo
                 movie={movie}
-                className="p-1.5 sm:p-2 shrink-0 hover:scale-110 transition-transform"
+                className="shrink-0 hover:scale-110 transition-transform"
               />
             </div>
           </div>

@@ -45,6 +45,7 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
           name="Ver trailer"
           onClick={() => onOpenTrailer && onOpenTrailer(movie)}
           icon={<IoIosPlay size={24} />}
+          className="px-3 py-4 text-xs sm:text-lg  justify-center"
         />
         <AddListBtn movie={movie} />
         <BtnInfo movie={movie} />
