@@ -9,7 +9,7 @@ import {
 import NavBar from "../../components/organisms/NavBar";
 import Footer from "../../components/organisms/Footer";
 import TrailerModal from "../../components/organisms/Hero/TrailerModal";
-import AllMoviesGrid from "./AllMoviesGrid";
+import AllMoviesGrid from "./components/AllMoviesGrid";
 
 export default function AllMovies() {
   const [searchParams] = useSearchParams();
