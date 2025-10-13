@@ -1,37 +1,35 @@
 import { Check, Plus } from "lucide-react";
-import useFavorites from "../../hooks/useFavorites";
+import { useFavoriteMoviesStore } from "../../stores/favoriteMovies";
 
-function AddListBtn({ movie, className = "", onChange }) {
-  const { toggle, isFavorite } = useFavorites();
+function AddListBtn({ movie, className = "", isFavorite }) {
+  const addFavoriteMovie = useFavoriteMoviesStore(
+    (state) => state.addFavoriteMovie
+  );
+  const removeFavoriteMovie = useFavoriteMoviesStore(
+    (state) => state.removeFavoriteMovie
+  );
 
-  const fav = movie && movie.id != null ? isFavorite(movie.id) : false;
-
-  const handleClick = () => {
-    if (!movie || movie.id == null) {
-      console.warn("AddListBtn: se requiere un objeto 'movie' con 'id'.");
-      return;
-    }
-    toggle(movie);
-    if (typeof onChange === "function") {
-      const raw = localStorage.getItem("myList");
-      const list = raw ? JSON.parse(raw) : [];
-      onChange(list);
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFavoriteMovie(movie.id);
+    } else {
+      addFavoriteMovie(movie);
     }
   };
 
   return (
     <button
       className={`rounded-full p-2 text-primary hover:scale-110 transition-transform bg-primary/20 cursor-pointer ease-in-out duration-500 ${
-        fav
+        isFavorite
           ? "bg-primary text-bg hover:bg-primary hover:text-bg"
           : "hover:bg-primary hover:text-bg"
       } ${className}`}
-      aria-pressed={fav}
-      aria-label={fav ? "Quitar de mi lista" : "Agregar a mi lista"}
-      onClick={handleClick}
-      title={fav ? "Quitar de mi lista" : "Agregar a mi lista"}
+      aria-pressed={isFavorite}
+      aria-label={isFavorite ? "Quitar de mi lista" : "Agregar a mi lista"}
+      onClick={toggleFavorite}
+      title={isFavorite ? "Quitar de mi lista" : "Agregar a mi lista"}
     >
-      {fav ? <Check /> : <Plus />}
+      {isFavorite ? <Check /> : <Plus />}
     </button>
   );
 }

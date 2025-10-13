@@ -4,8 +4,14 @@ import { IoIosPlay } from "react-icons/io";
 import Btn from "../../../components/atoms/Btn";
 import AddListBtn from "../../../components/atoms/AddListBtn";
 import BtnInfo from "../../../components/atoms/BtnInfo";
+import { useFavoriteMoviesStore } from "../../../stores/favoriteMovies";
 
 export default function MovieHoverContent({ movie, isVisible, onOpenTrailer }) {
+  const favoriteMovies = useFavoriteMoviesStore(
+    (state) => state.favoriteMovies
+  );
+
+  const isFavorite = favoriteMovies.some((fav) => fav.id === movie.id);
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
     const date = new Date(dateString);
@@ -55,6 +61,7 @@ export default function MovieHoverContent({ movie, isVisible, onOpenTrailer }) {
             <AddListBtn
               movie={movie}
               className="shrink-0 hover:scale-110 transition-transform"
+              isFavorite={isFavorite}
             />
             <BtnInfo
               movie={movie}

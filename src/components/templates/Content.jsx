@@ -23,7 +23,6 @@ export default function Content() {
           link="/allmovies?category=popular"
           movies={popular.movies}
           loading={popular.loading}
-          error={popular.error}
         />
       </section>
       <section id="top-rated">
@@ -32,7 +31,6 @@ export default function Content() {
           link="/allmovies?category=top-rated"
           movies={topRated.movies}
           loading={topRated.loading}
-          error={topRated.error}
           variant="horizontal"
         />
       </section>
@@ -42,7 +40,6 @@ export default function Content() {
           link="/allmovies?category=upcoming"
           movies={upcoming.movies}
           loading={upcoming.loading}
-          error={upcoming.error}
         />
       </section>
     </main>

@@ -12,7 +12,6 @@ export default function MoviesCarousel({
   link,
   movies = [],
   loading = false,
-  error = null,
   variant = "vertical",
 }) {
   const isHorizontal = variant === "horizontal";
@@ -21,44 +20,35 @@ export default function MoviesCarousel({
     breakpoints: isHorizontal
       ? {
           640: {
-            // sm
             slidesPerView: 3,
           },
           768: {
-            // md
             slidesPerView: 3,
           },
           1024: {
-            // lg
             slidesPerView: 4,
           },
           1280: {
-            // xl
             slidesPerView: 4,
           },
         }
       : {
           640: {
-            // sm
             slidesPerView: 4,
           },
           768: {
-            // md
             slidesPerView: 4,
           },
           1024: {
-            // lg
             slidesPerView: 5,
           },
           1280: {
-            // xl
             slidesPerView: 6,
           },
         },
   };
 
   if (loading) return <MoviesCarouselSkeleton variant={variant} />;
-  if (error) return <p>Error 😢: {error.message || error}</p>;
   if (!movies || movies.length === 0) return null;
 
   return (
