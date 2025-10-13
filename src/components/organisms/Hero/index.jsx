@@ -4,14 +4,15 @@ import HeroCarousel from "./HeroCarousel";
 import TrailerModal from "./TrailerModal";
 import { useMemo, useState } from "react";
 import HeroSkeleton from "../../skeletons/HeroSkeleton";
+import { useModal } from "../../../hooks/useModal";
 
 export default function Hero() {
   const { loading: loadingMovies, data } = useQuery(GET_NOW_PLAYING_MOVIES);
   const { data: genreData, loading: loadingGenres } =
     useQuery(GET_MOVIE_GENRES);
 
-  const [open, setOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const { isOpen, openModal, closeModal } = useModal();
 
   const genreMap = useMemo(
     () => new Map((genreData?.movieGenres ?? []).map((g) => [g.id, g.name])),
@@ -20,11 +21,11 @@ export default function Hero() {
 
   function handleOpenTrailer(movie) {
     setSelectedMovie(movie);
-    setOpen(true);
+    openModal();
   }
 
   function handleCloseTrailer() {
-    setOpen(false);
+    closeModal();
     setSelectedMovie(null);
   }
 
@@ -39,7 +40,7 @@ export default function Hero() {
         onOpenTrailer={handleOpenTrailer}
       />
       <TrailerModal
-        open={open}
+        open={isOpen}
         onClose={handleCloseTrailer}
         movie={selectedMovie}
       />

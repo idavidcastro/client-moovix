@@ -6,7 +6,7 @@ import AddListBtn from "../../../components/atoms/AddListBtn";
 import BtnInfo from "../../../components/atoms/BtnInfo";
 import { useFavoriteMoviesStore } from "../../../stores/favoriteMovies";
 
-export default function MovieHoverContent({ movie, isVisible, onOpenTrailer }) {
+export default function MenuLaptop({ movie, isVisible, onOpenTrailer }) {
   const favoriteMovies = useFavoriteMoviesStore(
     (state) => state.favoriteMovies
   );
