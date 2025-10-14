@@ -60,7 +60,7 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
       {/* Menu desplegable */}
       <div className="relative" ref={menuRef}>
         <button
-          className="text-primary p-1"
+          className="text-primary p-2 cursor-pointer hover:bg-primary/10 rounded-full transition"
           onClick={(e) => {
             e.stopPropagation();
             setIsOpen(!isOpen);
@@ -82,14 +82,14 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
 
         {/* Menú desplegable */}
         <div
-          className={`absolute right-0 mt-1 w-48 rounded-md shadow-lg bg-bg-secondary transition-all duration-200 z-[51] ${
+          className={`absolute right-0 mt-1 w-48 rounded-md shadow-lg backdrop-blur-md bg-secondary/20 border border-secondary/20 transition-all duration-200 z-[51] ${
             isOpen
               ? "opacity-100 visible transform scale-100"
               : "opacity-0 invisible transform scale-95"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="py-1">
+          <div>
             {/* Ver trailer */}
             <button
               onClick={(e) => {
@@ -97,7 +97,7 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
                 onOpenTrailer?.(movie);
                 setIsOpen(false);
               }}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left cursor-pointer transition-colors duration-200"
             >
               <IoIosPlay size={18} />
               Ver trailer
@@ -110,7 +110,7 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
                 handleFavoriteToggle(e);
                 setIsOpen(false);
               }}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left cursor-pointer"
             >
               {isFavorite ? <Check size={18} /> : <Plus size={18} />}
               {isFavorite ? "Quitar de mi lista" : "Agregar a mi lista"}

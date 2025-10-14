@@ -13,16 +13,14 @@ export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
 
   const handleLinkClick = (e, href) => {
-    // Si es un link a otra página, deja que navegue normalmente
     if (href.startsWith("/")) return;
 
-    // Si es un anchor link (#), prevenir el comportamiento por defecto y hacer scroll suave
     e.preventDefault();
-    setOpen(false); // Cerrar menú móvil
+    setOpen(false);
 
     const target = document.querySelector(href);
     if (target) {
-      const navHeight = 80; // Altura del navbar + margen extra
+      const navHeight = 80;
       const targetPosition = target.offsetTop - navHeight;
 
       window.scrollTo({
@@ -55,7 +53,7 @@ export default function NavBar() {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
         scrolled || open
-          ? "bg-background/80 backdrop-blur-md shadow-lg rounded-b-md"
+          ? "bg-secondary/20 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -84,9 +82,7 @@ export default function NavBar() {
       </div>
       <div
         className={`md:hidden transition-all duration-300 items-center flex justify-center ${
-          open
-            ? "bg-background/80 backdrop-blur-md shadow-lg rounded-b-md opacity-100"
-            : "max-h-0 opacity-0"
+          open ? "opacity-100" : "max-h-0 opacity-0"
         } overflow-hidden h-screen`}
       >
         <ul className="flex flex-col gap-6 font-medium text-primary text-center">

@@ -10,6 +10,7 @@ import NavBar from "../../components/organisms/NavBar";
 import Footer from "../../components/organisms/Footer";
 import TrailerModal from "../../components/organisms/Hero/TrailerModal";
 import AllMoviesGrid from "./components/AllMoviesGrid";
+// import EmptyState from "../../components/molecules/EmptyState";
 
 export default function AllMovies() {
   const [searchParams] = useSearchParams();
@@ -60,7 +61,7 @@ export default function AllMovies() {
           </h1>
         </div>
 
-        <div className="px-[5%] pb-16">
+        <div className="px-[5%] pb-22">
           {loading && (
             <div className="flex flex-col items-center justify-center py-20"></div>
           )}
@@ -74,6 +75,7 @@ export default function AllMovies() {
           )}
         </div>
         {/* Empty State - FORZADO PARA PRUEBA */}
+        {/* <EmptyState /> */}
         <Footer />
         <TrailerModal
           open={open}
