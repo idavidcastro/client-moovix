@@ -51,36 +51,31 @@ export default function AllMovies() {
   }
 
   return (
-    <>
-      <section className="min-h-screen">
-        <NavBar />
+    <section className="min-h-screen">
+      <div className="pt-24 pb-8 px-[5%]">
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 cursor-default">
+          {config.title}
+        </h1>
+      </div>
 
-        <div className="pt-24 pb-8 px-[5%]">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 cursor-default">
-            {config.title}
-          </h1>
-        </div>
+      <div className="px-[5%]">
+        {loading && <AllMoviesSkeleton />}
 
-        <div className="px-[5%]">
-          {loading && <AllMoviesSkeleton />}
-
-          {/* Temporalmente comentado para ver empty state */}
-          {data && data[config.dataKey] && (
-            <MoviesGrid
-              movies={data[config.dataKey]}
-              onOpenTrailer={handleOpenTrailer}
-            />
-          )}
-        </div>
-        {/* Empty State - FORZADO PARA PRUEBA */}
-        {/* <EmptyState /> */}
-        <Footer />
-        <TrailerModal
-          open={open}
-          onClose={handleCloseTrailer}
-          movie={selectedMovie}
-        />
-      </section>
-    </>
+        {/* Temporalmente comentado para ver empty state */}
+        {data && data[config.dataKey] && (
+          <MoviesGrid
+            movies={data[config.dataKey]}
+            onOpenTrailer={handleOpenTrailer}
+          />
+        )}
+      </div>
+      {/* Empty State - FORZADO PARA PRUEBA */}
+      {/* <EmptyState /> */}
+      <TrailerModal
+        open={open}
+        onClose={handleCloseTrailer}
+        movie={selectedMovie}
+      />
+    </section>
   );
 }

@@ -4,10 +4,10 @@ import Footer from "../../components/organisms/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <NavBar />
       <Content />
       <Footer />
-    </div>
+    </>
   );
 }
