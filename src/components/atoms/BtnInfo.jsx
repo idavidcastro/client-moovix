@@ -5,7 +5,7 @@ export default function BtnInfo({ movie, className }) {
   return (
     <Link
       className={`rounded-full p-[11px] hover:bg-primary ease-in-out duration-500 hover:text-bg text-primary hover:scale-110 transition-transform bg-primary/20 cursor-pointer ${className}`}
-      title={"Más detalles"}
+      title={"Más información"}
       to={`/movie/${movie.id}`}
     >
       {<Info size={18} />}

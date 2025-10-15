@@ -19,7 +19,6 @@ export default function AllMovies() {
   const [open, setOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  // Mapeo de categorías a queries y títulos
   const categoryConfig = {
     popular: {
       query: GET_POPULAR_MOVIES,
@@ -62,7 +61,7 @@ export default function AllMovies() {
           </h1>
         </div>
 
-        <div className="px-[5%] pb-22">
+        <div className="px-[5%]">
           {loading && <AllMoviesSkeleton />}
 
           {/* Temporalmente comentado para ver empty state */}

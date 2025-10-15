@@ -11,25 +11,25 @@ export default function HeroSkeleton() {
         </div>
 
         {/* Contenido simulado */}
-        <div className="relative z-20 space-y-4 max-w-3xl">
+        <div className="relative z-20">
           {/* Rating */}
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full bg-gray-700" />
-            <div className="h-3 w-10 bg-gray-700 rounded" />
+            <div className="h-4 sm:h-5 md:h-5 w-8 bg-gray-700 rounded" />
           </div>
 
           {/* Título */}
-          <div className="h-8 sm:h-10 md:h-12 lg:h-14 w-3/4 bg-gray-700 rounded" />
+          <div className="h-7 sm:h-10 md:h-10 lg:h-12 w-3/4 bg-gray-700 rounded mt-3" />
 
           {/* Descripción */}
-          <div className="space-y-2 mt-4 hidden lg:block">
-            <div className="h-3 w-full bg-gray-700 rounded" />
-            <div className="h-3 w-11/12 bg-gray-700 rounded" />
-            <div className="h-3 w-full bg-gray-700 rounded" />
+          <div className="space-y-3 mt-7 hidden lg:block">
+            <div className="h-4 w-xl bg-gray-700 rounded" />
+            <div className="h-4 w-11/12 bg-gray-700 rounded" />
+            <div className="h-4 w-xl bg-gray-700 rounded" />
+            <div className="h-4 w-11/12 bg-gray-700 rounded" />
           </div>
 
           {/* Géneros */}
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-4 sm:mt-6 lg:mt-7">
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
@@ -40,7 +40,8 @@ export default function HeroSkeleton() {
 
           {/* Botones */}
           <div className="hidden lg:flex items-center gap-4 mt-6">
-            <div className="h-10 w-32 bg-gray-700 rounded-md" />
+            <div className="h-12 sm:h-14 w-36 sm:w-40 bg-gray-700 rounded-md" />
+
             <div className="h-10 w-10 rounded-full bg-gray-700" />
             <div className="h-10 w-10 rounded-full bg-gray-700" />
           </div>

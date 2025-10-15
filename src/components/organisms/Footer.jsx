@@ -1,8 +1,6 @@
-import React from "react";
-
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center gap-6 p-6 mt-6 bg-transparent">
+    <footer className="flex flex-col items-center justify-center gap-6 p-6 mt-40 bg-transparent">
       <div>
         <span className="text-2xl font-bold text-white select-none no-underline cursor-default">
           moovix

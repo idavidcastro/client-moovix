@@ -62,7 +62,7 @@ export default function MoviesCarousel({
             href={link}
             className="text-primary text-base sm:text-lg md:text-xl font-bold text-center"
           >
-            Ver más
+            Ver todos
           </a>
           <ChevronRight className="text-primary w-5 h-5 sm:w-8 sm:h-8 md:w-6 md:h-6" />
         </div>

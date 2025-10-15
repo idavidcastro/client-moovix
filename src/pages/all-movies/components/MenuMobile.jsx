@@ -126,7 +126,7 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
               }}
             >
               <Info size={18} />
-              Ver más
+              Más información
             </Link>
           </div>
         </div>
