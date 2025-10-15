@@ -10,6 +10,7 @@ import NavBar from "../../components/organisms/NavBar";
 import Footer from "../../components/organisms/Footer";
 import TrailerModal from "../../components/organisms/Hero/TrailerModal";
 import AllMoviesGrid from "./components/AllMoviesGrid";
+import AllMoviesSkeleton from "../../components/skeletons/AllMoviesSkeleton";
 // import EmptyState from "../../components/molecules/EmptyState";
 
 export default function AllMovies() {
@@ -62,9 +63,7 @@ export default function AllMovies() {
         </div>
 
         <div className="px-[5%] pb-22">
-          {loading && (
-            <div className="flex flex-col items-center justify-center py-20"></div>
-          )}
+          {loading && <AllMoviesSkeleton />}
 
           {/* Temporalmente comentado para ver empty state */}
           {data && data[config.dataKey] && (
