@@ -2,7 +2,7 @@ import { IoIosPlay } from "react-icons/io";
 import { MoreVertical, Info, Plus, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { useFavoriteMoviesStore } from "../../../stores/favoriteMovies";
+import { useFavoriteMoviesStore } from "../../stores/favoriteMovies";
 
 export default function MenuMobile({ movie, onOpenTrailer }) {
   const [isOpen, setIsOpen] = useState(false);

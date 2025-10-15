@@ -1,10 +1,9 @@
-import React from "react";
 import { Star, Calendar } from "lucide-react";
 import { IoIosPlay } from "react-icons/io";
-import Btn from "../../../components/atoms/Btn";
-import AddListBtn from "../../../components/atoms/AddListBtn";
-import BtnInfo from "../../../components/atoms/BtnInfo";
-import { useFavoriteMoviesStore } from "../../../stores/favoriteMovies";
+import Btn from "../atoms/Btn";
+import AddListBtn from "../atoms/AddListBtn";
+import BtnInfo from "../atoms/BtnInfo";
+import { useFavoriteMoviesStore } from "../../stores/favoriteMovies";
 
 export default function MenuLaptop({ movie, isVisible, onOpenTrailer }) {
   const favoriteMovies = useFavoriteMoviesStore(

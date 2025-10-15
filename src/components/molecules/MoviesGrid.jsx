@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Card from "../../../components/molecules/CardMovie";
+import Card from "./CardMovie";
 import MenuLaptop from "./MenuLaptop";
 import MenuMobile from "./MenuMobile";
 
-export default function AllMoviesGrid({ movies, onOpenTrailer }) {
+export default function MoviesGrid({ movies, onOpenTrailer }) {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (

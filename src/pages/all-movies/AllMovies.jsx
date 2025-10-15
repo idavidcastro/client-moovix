@@ -9,7 +9,7 @@ import {
 import NavBar from "../../components/organisms/NavBar";
 import Footer from "../../components/organisms/Footer";
 import TrailerModal from "../../components/organisms/Hero/TrailerModal";
-import AllMoviesGrid from "./components/AllMoviesGrid";
+import MoviesGrid from "../../components/molecules/MoviesGrid";
 import AllMoviesSkeleton from "../../components/skeletons/AllMoviesSkeleton";
 // import EmptyState from "../../components/molecules/EmptyState";
 
@@ -56,7 +56,7 @@ export default function AllMovies() {
         <NavBar />
 
         <div className="pt-24 pb-8 px-[5%]">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 cursor-default">
             {config.title}
           </h1>
         </div>
@@ -66,7 +66,7 @@ export default function AllMovies() {
 
           {/* Temporalmente comentado para ver empty state */}
           {data && data[config.dataKey] && (
-            <AllMoviesGrid
+            <MoviesGrid
               movies={data[config.dataKey]}
               onOpenTrailer={handleOpenTrailer}
             />
