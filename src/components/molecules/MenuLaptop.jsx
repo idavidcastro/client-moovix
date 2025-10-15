@@ -38,11 +38,21 @@ export default function MenuLaptop({ movie, isVisible, onOpenTrailer }) {
               <span className="font-semibold">
                 {movie.vote_average?.toFixed(1)}
               </span>
+              <span className="text-gray-400">({movie.vote_count} votos)</span>
             </div>
             <div className="flex items-center gap-1">
               <Calendar className="w-3 h-3" />
               <span>{formatDate(movie.release_date)}</span>
             </div>
+            <span className="text-gray-400">{movie.original_language}</span>
+          </div>
+          {/* Descripción corta */}
+          <p className="text-xs text-gray-300 mt-2 line-clamp-2">
+            {movie.overview}
+          </p>
+          {/* Popularidad */}
+          <div className="text-xs text-gray-400 mt-1">
+            Popularidad: {Math.round(movie.popularity)}
           </div>
         </div>
         {/* Grupo de botones - versión mejorada y responsiva */}
