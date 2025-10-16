@@ -54,13 +54,13 @@ export default function MoviesCarousel({
   return (
     <div className="relative">
       <div className="flex items-center justify-between px-[5%] mb-2 sm:mb-3">
-        <h2 className="text-primary text-lg sm:text-xl md:text-2xl font-bold cursor-default">
+        <h2 className="text-primary text-md sm:text-xl md:text-xl lg:text-2xl font-semibold cursor-default">
           {title}
         </h2>
         <div className="flex items-center cursor-pointer">
           <a
             href={link}
-            className="text-primary text-base sm:text-lg md:text-xl font-bold text-center"
+            className="text-primary text-md sm:text-xl md:text-xl lg:text-2xl font-semibold"
           >
             Ver todos
           </a>
@@ -72,7 +72,7 @@ export default function MoviesCarousel({
         navigation
         loop
         modules={[Navigation]}
-        spaceBetween={8}
+        spaceBetween={12}
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>

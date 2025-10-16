@@ -40,7 +40,7 @@ export default function HeroSkeleton() {
 
           {/* Botones */}
           <div className="hidden lg:flex items-center gap-4 mt-6">
-            <div className="h-12 sm:h-14 w-36 sm:w-40 bg-gray-700 rounded-md" />
+            <div className="h-12 sm:h-15 w-36 sm:w-40 bg-gray-700 rounded-lg" />
 
             <div className="h-10 w-10 rounded-full bg-gray-700" />
             <div className="h-10 w-10 rounded-full bg-gray-700" />

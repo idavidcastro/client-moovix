@@ -29,7 +29,7 @@ export default function MenuLaptop({ movie, isVisible, onOpenTrailer }) {
       <div className="p-3 space-y-2">
         {/* Título y rating */}
         <div>
-          <h3 className="text-white font-bold text-sm mb-1 line-clamp-1">
+          <h3 className="text-white font-bold text-xl mb-1 line-clamp-1">
             {movie.title}
           </h3>
           <div className="flex items-center gap-2 text-xs text-gray-300">
@@ -44,7 +44,6 @@ export default function MenuLaptop({ movie, isVisible, onOpenTrailer }) {
               <Calendar className="w-3 h-3" />
               <span>{formatDate(movie.release_date)}</span>
             </div>
-            <span className="text-gray-400">{movie.original_language}</span>
           </div>
           {/* Descripción corta */}
           <p className="text-xs text-gray-300 mt-2 line-clamp-2">

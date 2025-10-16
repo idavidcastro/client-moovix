@@ -7,12 +7,12 @@ export default function MoviesGrid({ movies, onOpenTrailer }) {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
       {movies.map((movie) => {
         return (
           <div
             key={movie.id}
-            className="relative flex group transition-transform duration-300 lg:hover:scale-125 lg:hover:z-30"
+            className="relative flex group transition-transform duration-300 lg:hover:scale-135 lg:hover:z-30"
             onMouseEnter={() => setHoveredId(movie.id)}
             onMouseLeave={() => setHoveredId(null)}
           >

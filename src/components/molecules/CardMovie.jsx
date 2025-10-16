@@ -8,9 +8,8 @@ export default function CardMovie({
   const imagePath =
     variant === "horizontal" ? movie.backdrop_path : movie.poster_path;
 
-  // Determinar las clases de altura según la variante
   const heightClasses =
-    variant === "horizontal" ? "aspect-[16/9]" : "aspect-[2/3]"; // Aspecto vertical para posters (2:3)
+    variant === "horizontal" ? "aspect-[16/9]" : "aspect-[2/3]";
 
   return (
     <div className="relative w-full group">
@@ -18,7 +17,7 @@ export default function CardMovie({
         <img
           src={`https://image.tmdb.org/t/p/original${imagePath}`}
           alt={movie.title}
-          className={`w-full object-cover rounded-sm ${heightClasses} ${className}`}
+          className={`w-full object-cover rounded-xl ${heightClasses} ${className}`}
         />
       </Link>
     </div>

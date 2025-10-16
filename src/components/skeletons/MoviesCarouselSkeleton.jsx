@@ -22,15 +22,13 @@ export default function MoviesCarouselSkeleton({ variant = "vertical" }) {
     <section className="relative animate-pulse">
       {/* header del carousel */}
       <div className="flex items-center justify-between px-[5%] mb-2 sm:mb-3">
-        <div className="h-5 sm:h-7 md:h-8 w-32 sm:w-40 md:w-56 bg-gray-700 rounded-sm" />
-        <div className="flex items-center space-x-2">
-          <div className="h-5 w-16 sm:w-20 md:w-24 bg-gray-700 rounded-sm" />
-        </div>
+        <div className="h-5 sm:h-7 md:h-8 w-32 sm:w-40 md:w-48 bg-gray-700 rounded-sm" />
+        <div className="h-5 sm:h-7 md:h-8 w-16 sm:w-20 md:w-24 bg-gray-700 rounded-sm" />
       </div>
 
       {/* grid de skeleton cards */}
       <div
-        className={`grid gap-2 ${
+        className={`grid gap-3 mt-4 md:mt-0 ${
           isHorizontal
             ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4"
             : "grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
@@ -39,7 +37,7 @@ export default function MoviesCarouselSkeleton({ variant = "vertical" }) {
         {Array.from({ length: maxCards }).map((_, index) => (
           <div
             key={index}
-            className={`bg-gray-700 rounded-sm ${aspectRatio} w-full ${getVisibilityClasses(
+            className={`bg-gray-700 rounded-xl ${aspectRatio} w-full ${getVisibilityClasses(
               index
             )}`}
           />

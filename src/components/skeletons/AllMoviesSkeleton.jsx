@@ -2,7 +2,7 @@ export default function AllMoviesSkeleton() {
   return (
     <div className="animate-pulse">
       <div className=" pb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
           {Array.from({ length: 15 }).map((_, index) => (
             <div
               key={index}
@@ -27,7 +27,7 @@ export default function AllMoviesSkeleton() {
               {/* Versión Desktop (lg+) */}
               <div className="hidden lg:block w-full">
                 <div className="relative w-full overflow-hidden">
-                  <div className="w-full aspect-[16/9] bg-gray-700 rounded-sm" />
+                  <div className="w-full aspect-[16/9] bg-gray-700 rounded-xl" />
                 </div>
               </div>
             </div>
