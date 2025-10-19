@@ -13,23 +13,16 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
   const isFavorite = favoriteMovies.some((fav) => fav.id === movie.id);
 
   return (
-    <>
-      <div className="flex items-center">
-        <div className="flex items-center">
-          <FaStar className="w-2 h-2 sm:w-3 sm:h-3 mr-1 text-yellow-400" />
-          <span className="text-xs sm:text-sm font-semibold text-yellow-400">
-            {movie.vote_average?.toFixed(1)}
-          </span>
-        </div>
-      </div>
-
+    <div>
       <div className="relative group space-y-2 sm:space-y-2">
-        <h2 className="text-2xl font-noto sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-primary font-bold leading-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)] cursor-pointer">
+        <h2 className="text-2xl font-noto sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-primary font-bold leading-tight line-clamp-2">
           {movie.title}
         </h2>
-        <p className="hidden leading-normal font-noto font-bold lg:block max-w-lg text-xs sm:text-sm md:text-base lg:text-lg text-third/90 overflow-hidden">
-          {movie.overview}
-        </p>
+        <div className="hidden lg:block max-w-xl">
+          <p className="font-noto font-bold text-lg text-third/90 mt-4 line-clamp-4">
+            {movie.overview}
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-1 sm:gap-2 items-center mt-3 sm:mt-5">
@@ -61,6 +54,6 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
 
         <BtnInfo movie={movie} />
       </div>
-    </>
+    </div>
   );
 }

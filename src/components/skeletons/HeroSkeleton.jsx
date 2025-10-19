@@ -12,11 +12,6 @@ export default function HeroSkeleton() {
 
         {/* Contenido simulado */}
         <div className="relative z-20">
-          {/* Rating */}
-          <div className="flex items-center gap-2">
-            <div className="h-4 sm:h-5 md:h-5 w-8 bg-gray-700 rounded" />
-          </div>
-
           {/* Título */}
           <div className="h-7 sm:h-10 md:h-10 lg:h-12 w-3/4 bg-gray-700 rounded mt-3" />
 

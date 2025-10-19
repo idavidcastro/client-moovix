@@ -56,7 +56,7 @@ export default function MenuLaptop({ movie, isVisible, onOpenTrailer }) {
             name="Ver trailer"
             onClick={() => onOpenTrailer?.(movie)}
             icon={<IoIosPlay size={20} />}
-            className="w-full lg:text-md justify-center"
+            className="w-full lg:text-base justify-center"
           />
 
           {/* Botones secundarios */}

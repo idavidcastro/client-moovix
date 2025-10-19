@@ -54,13 +54,13 @@ export default function MoviesCarousel({
   return (
     <div className="relative">
       <div className="flex items-center justify-between px-[5%] mb-2 sm:mb-3">
-        <h2 className="text-primary text-md sm:text-xl md:text-xl lg:text-2xl font-semibold cursor-default">
+        <h2 className="text-primary text-base sm:text-xl md:text-xl lg:text-2xl font-semibold cursor-default">
           {title}
         </h2>
         <div className="flex items-center cursor-pointer">
           <a
             href={link}
-            className="text-primary text-md sm:text-xl md:text-xl lg:text-2xl font-semibold"
+            className="text-primary text-base sm:text-xl md:text-xl lg:text-2xl font-semibold"
           >
             Ver todos
           </a>

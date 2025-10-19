@@ -50,19 +50,22 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
 
   return (
     <div className="lg:hidden relative flex-1 flex justify-between items-start w-full p-2">
-      <div className="flex flex-col h-full justify-between">
-        <h3 className="text-sm font-bold text-primary line-clamp-3">
+      <Link
+        to={`/movie/${movie.id}`}
+        className="flex flex-col h-full justify-between flex-1 pr-2 rounded-md transition-colors"
+      >
+        <h3 className="text-base font-bold text-primary line-clamp-3">
           {movie.title}
         </h3>
         <span className="text-sm text-gray-600 font-bold">{year}</span>
-      </div>
+      </Link>
 
-      {/* Menu desplegable */}
-      <div className="relative" ref={menuRef}>
+      <div className="relative shrink-0" ref={menuRef}>
         <button
-          className="text-primary p-2 cursor-pointer hover:bg-primary/10 rounded-full transition"
-          onClick={(e) => {
-            e.stopPropagation();
+          className="text-primary p-2 cursor-pointer rounded-full transition"
+          onClick={() => {
+            // e.stopPropagation();
+            // e.preventDefault();
             setIsOpen(!isOpen);
           }}
         >
@@ -71,21 +74,17 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
 
         {isOpen && (
           <div
-            className="fixed inset-0 z-50"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setIsOpen(false);
-            }}
+            className="fixed inset-0 z-40"
+            onClick={() => setIsOpen(false)}
           />
         )}
 
         {/* Menú desplegable */}
         <div
-          className={`absolute right-0 mt-1 w-48 rounded-md shadow-lg backdrop-blur-md bg-secondary/20 border border-secondary/20 transition-all duration-200 z-[51] ${
+          className={`absolute right-0 mt-1 w-48 rounded-md shadow-lg backdrop-blur-md bg-secondary/20 border border-secondary/20 transition-all duration-200 z-50 ${
             isOpen
-              ? "opacity-100 visible transform scale-100"
-              : "opacity-0 invisible transform scale-95"
+              ? "opacity-100 visible scale-100"
+              : "opacity-0 invisible scale-95"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
@@ -97,7 +96,7 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
                 onOpenTrailer?.(movie);
                 setIsOpen(false);
               }}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left cursor-pointer transition-colors duration-200"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left transition-colors cursor-pointer"
             >
               <IoIosPlay size={18} />
               Ver trailer
@@ -110,7 +109,7 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
                 handleFavoriteToggle(e);
                 setIsOpen(false);
               }}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left transition-colors cursor-pointer"
             >
               {isFavorite ? <Check size={18} /> : <Plus size={18} />}
               {isFavorite ? "Quitar de mi lista" : "Agregar a mi lista"}
@@ -119,11 +118,8 @@ export default function MenuMobile({ movie, onOpenTrailer }) {
             {/* Ver más */}
             <Link
               to={`/movie/${movie.id}`}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsOpen(false);
-              }}
+              className="flex items-center gap-2 px-4 py-2 text-sm text-primary hover:bg-primary/10 w-full text-left cursor-pointer"
+              onClick={() => setIsOpen(false)}
             >
               <Info size={18} />
               Más información
