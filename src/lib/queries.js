@@ -62,6 +62,13 @@ export const GET_MOVIE_BY_ID = gql`
       release_date
       poster_path
       vote_average
+      backdrop_path
+      adult
+      genre_ids
+      original_language
+      popularity
+      vote_count
+      original_title
     }
   }
 `;
@@ -116,6 +123,61 @@ export const GET_MOVIE_GENRES = gql`
     movieGenres {
       id
       name
+    }
+  }
+`;
+export const GET_MOVIE_CREDITS = gql`
+  query GetMovieCredits($id: ID!) {
+    movieCredits(id: $id) {
+      cast {
+        id
+        name
+        character
+        profile_path
+      }
+      crew {
+        id
+        name
+        job
+        department
+      }
+    }
+  }
+`;
+
+export const GET_MOVIE_DETAILS = gql`
+  query GetMovieDetails($id: ID!) {
+    movieDetails(id: $id) {
+      id
+      title
+      overview
+      release_date
+      runtime
+      status
+      tagline
+      budget
+      revenue
+      poster_path
+      backdrop_path
+      vote_average
+      genres {
+        id
+        name
+      }
+      production_companies {
+        id
+        name
+        origin_country
+        logo_path
+      }
+      production_countries {
+        iso_3166_1
+        name
+      }
+      spoken_languages {
+        iso_639_1
+        name
+      }
     }
   }
 `;
