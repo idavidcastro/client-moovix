@@ -13,8 +13,10 @@ export default function Home() {
   const upcoming = useMoviesQuery(GET_UPCOMING_MOVIES);
 
   return (
-    <div className="space-y-6">
-      <Hero />
+    <div>
+      <section id="hero" className="mb-[10%]">
+        <Hero />
+      </section>
       <section id="popular">
         <MoviesCarousel
           title="Populares"

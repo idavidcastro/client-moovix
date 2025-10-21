@@ -33,7 +33,7 @@ export default function Hero() {
   if (!data?.nowPlayingMovies?.length) return null;
 
   return (
-    <section id="hero">
+    <div>
       <HeroCarousel
         movies={data.nowPlayingMovies}
         genreMap={genreMap}
@@ -44,6 +44,6 @@ export default function Hero() {
         onClose={handleCloseTrailer}
         movie={selectedMovie}
       />
-    </section>
+    </div>
   );
 }

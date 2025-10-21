@@ -181,3 +181,25 @@ export const GET_MOVIE_DETAILS = gql`
     }
   }
 `;
+
+export const GET_MOVIE_IMAGES = gql`
+  query GetMovieImages($id: ID!) {
+    movieImages(id: $id) {
+      backdrops {
+        file_path
+        width
+        height
+      }
+      logos {
+        file_path
+        width
+        height
+      }
+      posters {
+        file_path
+        width
+        height
+      }
+    }
+  }
+`;

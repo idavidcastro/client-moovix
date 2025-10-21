@@ -9,13 +9,13 @@ export default function HeroCarousel({ movies, genreMap, onOpenTrailer }) {
         slidesPerView={1}
         centeredSlides
         loop={movies.length > 1}
-        autoplay={{ delay: 10000, disableOnInteraction: false }}
+        autoplay={{ delay: 100000, disableOnInteraction: false }}
         navigation
         modules={[Navigation, Autoplay]}
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <div className="flex items-end justify-start w-full h-[40vh] sm:h-[40vh] lg:h-screen px-[5%] py-[10%] ">
+            <div className="flex items-end justify-start w-full h-[30vh] sm:h-[40vh] lg:h-screen px-[5%] lg:py-[10%]">
               <img
                 src={
                   movie.backdrop_path
@@ -31,7 +31,7 @@ export default function HeroCarousel({ movies, genreMap, onOpenTrailer }) {
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/100 to-transparent" />
               </div>
 
-              <div className="z-20 w-full left-0 bottom-0 text-primary md:w-3/4">
+              <div className="z-20 w-auto text-primary lg:w-3/4">
                 <MovieInfo
                   movie={movie}
                   genreMap={genreMap}

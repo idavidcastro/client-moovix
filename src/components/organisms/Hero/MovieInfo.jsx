@@ -4,6 +4,8 @@ import { FaStar } from "react-icons/fa";
 import { IoIosPlay } from "react-icons/io";
 import BtnInfo from "../../atoms/BtnInfo";
 import { useFavoriteMoviesStore } from "../../../stores/favoriteMovies";
+import { useQuery } from "@apollo/client/react";
+import { GET_MOVIE_IMAGES } from "../../../lib/queries";
 
 export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
   const favoriteMovies = useFavoriteMoviesStore(
@@ -12,12 +14,24 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
 
   const isFavorite = favoriteMovies.some((fav) => fav.id === movie.id);
 
+  // Obtener logos del TMDB para este movie.id
+  const { data: imagesData } = useQuery(GET_MOVIE_IMAGES, {
+    variables: { id: movie.id },
+    skip: !movie?.id,
+  });
+  const logoPath = imagesData?.movieImages?.logos?.[0]?.file_path;
+
   return (
     <div>
-      <div className="relative group space-y-2 sm:space-y-2">
-        <h2 className="text-2xl font-noto sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-primary font-bold leading-tight line-clamp-2">
-          {movie.title}
-        </h2>
+      <div className="relative">
+        <div className="w-60 h-30 md:w-96 md:h-70 flex items-end">
+          <img
+            src={`https://image.tmdb.org/t/p/w500${logoPath}`}
+            alt={`${movie.title} logo`}
+            className="w-auto max-h-full object-contain"
+            loading="lazy"
+          />
+        </div>
         <div className="hidden lg:block max-w-xl">
           <p className="font-noto font-bold text-lg text-third/90 mt-4 line-clamp-4">
             {movie.overview}
@@ -25,7 +39,7 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-1 sm:gap-2 items-center mt-3 sm:mt-5">
+      <div className="hidden lg:flex flex-wrap gap-1 sm:gap-2 items-center mt-3 sm:mt-5">
         <span className="text-xs sm:text-sm text-bg font-bold bg-primary rounded-sm px-2 uppercase">
           NUEVA PELÍCULA
         </span>

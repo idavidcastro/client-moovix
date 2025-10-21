@@ -1,6 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client/react";
-import { GET_MOVIE_CREDITS, GET_MOVIE_DETAILS } from "../../lib/queries";
+import {
+  GET_MOVIE_CREDITS,
+  GET_MOVIE_DETAILS,
+  GET_MOVIE_IMAGES,
+} from "../../lib/queries";
 import { IoIosPlay } from "react-icons/io";
 import Btn from "../../components/atoms/Btn";
 import AddListBtn from "../../components/atoms/AddListBtn";
@@ -27,6 +31,10 @@ export default function MovieDetail() {
     error: errorCredits,
   } = useQuery(GET_MOVIE_CREDITS, { variables: { id } });
 
+  const { data: imagesData } = useQuery(GET_MOVIE_IMAGES, {
+    variables: { id },
+  });
+
   const movie = detailsData?.movieDetails;
   const credits = creditsData?.movieCredits;
   const director = credits?.crew?.find((m) => m.job === "Director");
@@ -45,6 +53,9 @@ export default function MovieDetail() {
     return <div className="text-center py-8">Película no encontrada.</div>;
 
   const isFavorite = favoriteMovies.some((fav) => fav.id === movie.id);
+
+  const images = imagesData?.movieImages;
+  const logo = images?.logos?.[0]?.file_path;
 
   return (
     <div className="relative min-h-screen text-white">
@@ -79,59 +90,17 @@ export default function MovieDetail() {
           {/* Info básica */}
           <div className="flex-1">
             {/* Título */}
-            <h1 className="text-2xl font-bold mb-2">{movie.title}</h1>
-
-            <div className="flex items-center gap-4 text-gray-300 mb-6">
-              <span className="px-2 py-1 border border-gray-600 rounded text-sm font-semibold">
-                {movie.adult ? "+18" : "TP"}
-              </span>
-
-              <span className="text-sm">
-                {new Date(movie.release_date).getFullYear()}
-              </span>
-              <span>·</span>
-              <span className="text-sm">{movie.runtime} min</span>
-              <span>·</span>
-
-              {/* Puntuación mejorada */}
-              <div className="flex items-center gap-2 bg-gray-800/60 px-2.5 py-1 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#facc15"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="none"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.347l5.518.4a.563.563 0 01.318.987l-4.193 3.74a.563.563 0 00-.182.557l1.248 5.37a.563.563 0 01-.834.61l-4.708-2.803a.563.563 0 00-.586 0l-4.708 2.803a.563.563 0 01-.834-.61l1.248-5.37a.563.563 0 00-.182-.557L3.044 10.34a.563.563 0 01.318-.987l5.518-.4a.563.563 0 00.475-.347L11.48 3.5z"
-                  />
-                </svg>
-
-                <span className="text-sm font-semibold text-primary">
-                  {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
-                </span>
-              </div>
-            </div>
-
-            {movie.genres && movie.genres.length > 0 && (
-              <div className="mb-8">
-                <div className="flex flex-wrap gap-2">
-                  {movie.genres.map((genre) => (
-                    <span
-                      key={genre.id}
-                      className="text-sm sm:text-sm text-bg font-bold bg-primary rounded-sm px-2 uppercase"
-                    >
-                      {genre.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            {logo ? (
+              <img
+                src={`https://image.tmdb.org/t/p/original${logo}`}
+                alt={movie.title}
+                className="w-auto h-auto sm:h-16 object-contain mb-4"
+              />
+            ) : (
+              <h1 className="text-2xl font-bold mb-2">{movie.title}</h1>
             )}
 
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 mb-7">
               <Btn
                 name="Ver tráiler"
                 onClick={openModal}
@@ -141,8 +110,41 @@ export default function MovieDetail() {
               <AddListBtn movie={movie} isFavorite={isFavorite} />
             </div>
 
-            <div className="mb-8 space-y-2  ">
+            <div className="mb-8 space-y-4">
               <p className="text-third/90 leading-relaxed">{movie.overview}</p>
+              <div className="flex items-center gap-2 text-primary mb-6">
+                <span className="px-1 border border-gray-500/60 rounded-sm text-xs font-semibold">
+                  {movie.adult ? "+18" : "TODOS"}
+                </span>
+                <span>·</span>
+                <span className="text-xs">
+                  {new Date(movie.release_date).getFullYear()}
+                </span>
+                <span>·</span>
+                <span className="text-xs">{movie.runtime} min</span>
+                <span>·</span>
+
+                {/* Puntuación mejorada */}
+                <div className="flex items-center  bg-gray-500/60 px-2 rounded-sm">
+                  <span className="text-xs font-semibold text-primary">
+                    {movie.vote_average ? movie.vote_average : "N/A"}
+                  </span>
+                </div>
+              </div>
+              {movie.genres && movie.genres.length > 0 && (
+                <div className="mb-8">
+                  <div className="flex flex-wrap gap-2">
+                    {movie.genres.map((genre) => (
+                      <span
+                        key={genre.id}
+                        className="text-xs sm:text-sm text-bg font-bold bg-primary rounded-sm px-2 uppercase"
+                      >
+                        {genre.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Info adicional */}
