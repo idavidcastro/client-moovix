@@ -116,21 +116,6 @@ export default function MovieDetail() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 mb-8">
-              <Btn
-                name="Ver tráiler"
-                onClick={openModal}
-                icon={<IoIosPlay size={20} />}
-                className="px-4 py-3 w-full sm:w-auto"
-              />
-              <AddListBtn movie={movie} isFavorite={isFavorite} />
-            </div>
-
-            <div className="mb-8 space-y-2  ">
-              <h3 className="text-lg font-semibold text-primary">Sinopsis</h3>
-              <p className="text-third/90 leading-relaxed">{movie.overview}</p>
-            </div>
-
             {movie.genres && movie.genres.length > 0 && (
               <div className="mb-8">
                 <div className="flex flex-wrap gap-2">
@@ -145,6 +130,20 @@ export default function MovieDetail() {
                 </div>
               </div>
             )}
+
+            <div className="flex items-center gap-3 mb-8">
+              <Btn
+                name="Ver tráiler"
+                onClick={openModal}
+                icon={<IoIosPlay size={20} />}
+                className="px-4 py-3 w-full sm:w-auto"
+              />
+              <AddListBtn movie={movie} isFavorite={isFavorite} />
+            </div>
+
+            <div className="mb-8 space-y-2  ">
+              <p className="text-third/90 leading-relaxed">{movie.overview}</p>
+            </div>
 
             {/* Info adicional */}
             <div className="flex flex-wrap gap-4 text-third/90 mb-6">
