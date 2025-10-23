@@ -53,7 +53,7 @@ export default function AllMovies() {
   return (
     <section className="min-h-screen">
       <div className="pt-24 pb-8 px-[5%]">
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 cursor-default">
+        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2 cursor-default">
           {config.title}
         </h1>
       </div>

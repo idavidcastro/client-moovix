@@ -117,21 +117,21 @@ export default function MovieDetail() {
             </div>
 
             <div className="mb-8 space-y-4">
-              <p className="text-third/90 leading-relaxed">{movie.overview}</p>
-              <div className="flex items-center gap-2 text-primary mb-6">
-                <span className="px-1 border border-gray-500/60 rounded-sm text-xs font-semibold">
+              <p className="text-primary/90 font-bold text-sm">
+                {movie.overview}
+              </p>
+              <div className="flex items-center gap-2 text-primary  text-xs">
+                <span className="px-1 border border-primary rounded-sm text-xs font-semibold">
                   {movie.adult ? "+18" : "TODOS"}
                 </span>
                 <span>·</span>
-                <span className="text-xs">
-                  {new Date(movie.release_date).getFullYear()}
-                </span>
+                <span>{new Date(movie.release_date).getFullYear()}</span>
                 <span>·</span>
-                <span className="text-xs">{movie.runtime} min</span>
+                <span>{movie.runtime} min</span>
                 <span>·</span>
 
                 {/* Puntuación mejorada */}
-                <div className="flex items-center  bg-gray-500/60 px-2 rounded-sm">
+                <div className="flex items-center  bg-third/30 px-2 rounded-sm">
                   <span className="text-xs font-semibold text-primary">
                     {movie.vote_average ? movie.vote_average : "N/A"}
                   </span>
@@ -143,7 +143,7 @@ export default function MovieDetail() {
                     {movie.genres.map((genre) => (
                       <span
                         key={genre.id}
-                        className="text-xs sm:text-sm text-bg font-bold bg-primary rounded-sm px-2 uppercase"
+                        className="text-xs sm:text-sm text-bg-secondary font-bold bg-primary rounded-sm px-1 uppercase"
                       >
                         {genre.name}
                       </span>
@@ -154,7 +154,7 @@ export default function MovieDetail() {
             </div>
 
             {/* Info adicional */}
-            <div className="flex flex-wrap gap-4 text-third/90 mb-6">
+            <div className="flex flex-wrap gap-4 text-primary text-sm">
               <span>
                 <strong>Dirección: </strong> {director?.name || "No disponible"}
               </span>
@@ -164,19 +164,17 @@ export default function MovieDetail() {
               </span>
             </div>
 
-            {/* Géneros */}
-
             <div className="mt-8">
               {/* Estado para controlar el tab activo */}
-              <div className="flex gap-8">
+              <div className="flex gap-4">
                 {["similares", "detalle", "reparto"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={` py-2 text-sm font-semibold uppercase transition-colors cursor-pointer ${
+                    className={`py-2 text-sm font-semibold transition-colors cursor-pointer ${
                       activeTab === tab
                         ? "text-primary border-b-1 border-primary"
-                        : "text-gray-500 hover:text-primary"
+                        : "text-third hover:text-primary"
                     }`}
                   >
                     {tab === "similares"
@@ -189,8 +187,8 @@ export default function MovieDetail() {
               </div>
               <div className="mt-6">
                 {activeTab === "similares" && (
-                  <div>
-                    <h2 className="text-2xl font-bold text-primary mb-4">
+                  <div className="">
+                    <h2 className="text-xl font-bold text-primary mb-4">
                       Películas Similares
                     </h2>
 
@@ -198,26 +196,14 @@ export default function MovieDetail() {
                       <p>Cargando...</p>
                     ) : similarMovies.length > 0 ? (
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                        {similarMovies.map((movie) => (
-                          // <div key={movie.id} className="text-center">
-                          //   <img
-                          //     src={
-                          //       movie.poster_path
-                          //         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                          //         : "/placeholder.png"
-                          //     }
-                          //     alt={movie.title}
-                          //     className="rounded-lg hover:opacity-80 transition"
-                          //   />
-                          //   <p className="mt-2 text-sm text-gray-300 truncate">
-                          //     {movie.title}
-                          //   </p>
-                          // </div>
-                          <CardMovie
-                            key={movie.id}
-                            movie={movie}
-                            variant="horizontal"
-                          />
+                        {similarMovies.slice(0, 10).map((movie) => (
+                          <div key={movie.id} className="text-center">
+                            <CardMovie key={movie.id} movie={movie} />
+
+                            <p className="mt-2 text-base font-bold text-primary truncate cursor-default">
+                              {movie.title}
+                            </p>
+                          </div>
                         ))}
                       </div>
                     ) : (
@@ -231,7 +217,7 @@ export default function MovieDetail() {
                     {/* Compañías de producción */}
                     {movie.production_companies?.length > 0 && (
                       <div>
-                        <h2 className="text-2xl font-semibold mb-4">
+                        <h2 className="text-xl font-bold text-primary mb-4">
                           Compañías de Producción
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -262,7 +248,7 @@ export default function MovieDetail() {
                     {/* Países de producción */}
                     {movie.production_countries?.length > 0 && (
                       <div>
-                        <h2 className="text-2xl font-semibold mb-2">
+                        <h2 className="text-xl font-bold text-primary mb-4">
                           Países de Producción
                         </h2>
                         <ul className="list-disc ml-6 text-gray-300">
@@ -276,7 +262,7 @@ export default function MovieDetail() {
                     {/* Idiomas hablados */}
                     {movie.spoken_languages?.length > 0 && (
                       <div>
-                        <h2 className="text-2xl font-semibold mb-2">
+                        <h2 className="text-xl font-bold text-primary mb-4">
                           Idiomas Hablados
                         </h2>
                         <ul className="list-disc ml-6 text-gray-300">
@@ -292,8 +278,8 @@ export default function MovieDetail() {
                 {activeTab === "reparto" && (
                   <div>
                     {credits?.cast?.length > 0 ? (
-                      <>
-                        <h2 className="text-2xl font-semibold mb-4">
+                      <div>
+                        <h2 className="text-xl font-bold text-primary mb-4">
                           Reparto principal
                         </h2>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
@@ -318,7 +304,7 @@ export default function MovieDetail() {
                             </div>
                           ))}
                         </div>
-                      </>
+                      </div>
                     ) : (
                       <p>No hay datos del reparto.</p>
                     )}
