@@ -12,11 +12,11 @@ body {
  }
 
 @theme {
-  --color-primary: #f8f8ff;
-  --color-secondary: #0e7490;
-  --color-third: #adb5bd;
-  --color-bg: #10141e;
-  --color-bg-secondary: #000101;
+  --color-primary: #f8f8ff; /*blanco*/
+  --color-secondary: #0e7490; /*azul/verde*/
+  --color-third: #adb5bd; /*gris*/
+  --color-bg: #10141e; /*azul oscuro*/
+  --color-bg-secondary: #000101; /*fondo*/
    --breakpoint-xs: 30rem;
    --font-noto: 'Noto Sans', sans-serif;
 }
