@@ -44,13 +44,13 @@ export default function MovieDetail() {
   );
 
   const similarMovies = similarData?.movieSimilar || [];
-  console.log("similar:", similarMovies);
 
   const movie = detailsData?.movieDetails;
   const credits = creditsData?.movieCredits;
   const director = credits?.crew?.find((m) => m.job === "Director");
 
   const [activeTab, setActiveTab] = useState("similares");
+  const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
 
   if (loadingDetails || loadingCredits)
     return <div className="text-center py-8">Cargando...</div>;
@@ -65,11 +65,11 @@ export default function MovieDetail() {
 
   return (
     <div>
-      <div className="relative w-full h-[30vh] sm:h-[40vh] lg:h-screen">
+      <div className="relative w-full h-[30vh] sm:h-[30vh]">
         <img
           src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
           alt={movie.title}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover filter brightness-60 lg:brightness-30"
         />
         <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-bg-secondary/90 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-bg-secondary/90 to-transparent" />
@@ -102,7 +102,7 @@ export default function MovieDetail() {
           {/* Info básica */}
           <div className="flex-1">
             {/* Título (si no hay logo) */}
-            <h1 className="hidden lg:block text-5xl font-bold mb-6">
+            <h1 className="hidden lg:block text-5xl font-bold mb-6 cursor-default text-primary">
               {movie.title}
             </h1>
 
@@ -116,24 +116,30 @@ export default function MovieDetail() {
               <AddListBtn movie={movie} isFavorite={isFavorite} />
             </div>
 
-            <div className="mb-8 space-y-4">
-              <p className="text-primary/90 font-bold text-sm">
+            <div className="mb-8 space-y-6">
+              <p
+                className={`text-primary/90 font-bold text-sm md:text-lg leading-tight cursor-pointer transition-all ${
+                  isOverviewExpanded ? "" : "line-clamp-4"
+                }`}
+                onClick={() => setIsOverviewExpanded(!isOverviewExpanded)}
+              >
                 {movie.overview}
               </p>
-              <div className="flex items-center gap-2 text-primary  text-xs">
+              <div className="flex items-center gap-6 text-primary text-xs md:text-sm cursor-default">
                 <span className="px-1 border border-primary rounded-sm text-xs font-semibold">
                   {movie.adult ? "+18" : "TODOS"}
                 </span>
-                <span>·</span>
-                <span>{new Date(movie.release_date).getFullYear()}</span>
-                <span>·</span>
-                <span>{movie.runtime} min</span>
-                <span>·</span>
+                <span className="text-third font-bold">
+                  {new Date(movie.release_date).getFullYear()}
+                </span>
+                <span className="text-third font-bold">
+                  {movie.runtime} min
+                </span>
 
                 {/* Puntuación mejorada */}
-                <div className="flex items-center  bg-third/30 px-2 rounded-sm">
-                  <span className="text-xs font-semibold text-primary">
-                    {movie.vote_average ? movie.vote_average : "N/A"}
+                <div className="flex items-center bg-third/30 px-2 rounded-sm">
+                  <span className="font-semibold text-primary">
+                    {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
                   </span>
                 </div>
               </div>
@@ -143,7 +149,7 @@ export default function MovieDetail() {
                     {movie.genres.map((genre) => (
                       <span
                         key={genre.id}
-                        className="text-xs sm:text-sm text-bg-secondary font-bold bg-primary rounded-sm px-1 uppercase"
+                        className="text-xs md:text-sm text-bg-secondary font-bold bg-primary rounded-sm px-1 uppercase cursor-default"
                       >
                         {genre.name}
                       </span>
@@ -154,7 +160,7 @@ export default function MovieDetail() {
             </div>
 
             {/* Info adicional */}
-            <div className="flex flex-wrap gap-4 text-primary text-sm">
+            <div className="flex flex-wrap gap-4 text-primary text-sm md:text-base cursor-default">
               <span>
                 <strong>Dirección: </strong> {director?.name || "No disponible"}
               </span>
@@ -167,28 +173,24 @@ export default function MovieDetail() {
             <div className="mt-8">
               {/* Estado para controlar el tab activo */}
               <div className="flex gap-4">
-                {["similares", "detalle", "reparto"].map((tab) => (
+                {["similares", "detalles"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`py-2 text-sm font-semibold transition-colors cursor-pointer ${
+                    className={`py-2 text-sm md:text-base font-semibold transition-colors cursor-pointer ${
                       activeTab === tab
                         ? "text-primary border-b-1 border-primary"
                         : "text-third hover:text-primary"
                     }`}
                   >
-                    {tab === "similares"
-                      ? "Similares"
-                      : tab === "detalle"
-                      ? "Detalle"
-                      : "Reparto"}
+                    {tab === "similares" ? "Similares" : "Detalles"}
                   </button>
                 ))}
               </div>
               <div className="mt-6">
                 {activeTab === "similares" && (
                   <div className="">
-                    <h2 className="text-xl font-bold text-primary mb-4">
+                    <h2 className="text-xl  font-bold text-primary mb-4">
                       Películas Similares
                     </h2>
 
@@ -212,102 +214,96 @@ export default function MovieDetail() {
                   </div>
                 )}
 
-                {activeTab === "detalle" && (
-                  <div className="space-y-10">
+                {activeTab === "detalles" && (
+                  <div className="space-y-8 cursor-default">
                     {/* Compañías de producción */}
                     {movie.production_companies?.length > 0 && (
-                      <div>
-                        <h2 className="text-xl font-bold text-primary mb-4">
+                      <section>
+                        <h2 className="text-lg font-bold text-primary mb-4 cursor-default">
                           Compañías de Producción
                         </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                          {movie.production_companies.map((p) => (
-                            <div
-                              key={p.id}
-                              className="flex items-center gap-3 bg-gray-900 p-3 rounded-lg"
-                            >
-                              {p.logo_path && (
-                                <img
-                                  src={`https://image.tmdb.org/t/p/w200${p.logo_path}`}
-                                  alt={p.name}
-                                  className="w-16 h-16 object-contain"
-                                />
-                              )}
-                              <div>
-                                <p className="font-semibold">{p.name}</p>
-                                <p className="text-sm text-gray-400">
-                                  País: {p.origin_country}
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                        <p className="text-third text-sm md:text-base cursor-default">
+                          {movie.production_companies?.length > 0
+                            ? movie.production_companies
+                                .map((p) => p.name)
+                                .join(", ")
+                            : "No hay compañías registradas."}
+                        </p>
+                      </section>
                     )}
-
                     {/* Países de producción */}
                     {movie.production_countries?.length > 0 && (
-                      <div>
-                        <h2 className="text-xl font-bold text-primary mb-4">
+                      <section>
+                        <h2 className="text-lg font-bold text-primary mb-4">
                           Países de Producción
                         </h2>
-                        <ul className="list-disc ml-6 text-gray-300">
+                        <div className="flex flex-wrap gap-2">
                           {movie.production_countries.map((p, i) => (
-                            <li key={i}>{p.name}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {/* Idiomas hablados */}
-                    {movie.spoken_languages?.length > 0 && (
-                      <div>
-                        <h2 className="text-xl font-bold text-primary mb-4">
-                          Idiomas Hablados
-                        </h2>
-                        <ul className="list-disc ml-6 text-gray-300">
-                          {movie.spoken_languages.map((lang, i) => (
-                            <li key={i}>{lang.name}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {activeTab === "reparto" && (
-                  <div>
-                    {credits?.cast?.length > 0 ? (
-                      <div>
-                        <h2 className="text-xl font-bold text-primary mb-4">
-                          Reparto principal
-                        </h2>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                          {credits.cast.slice(0, 10).map((actor) => (
-                            <div
-                              key={actor.id}
-                              className="flex flex-col items-center text-center"
+                            <span
+                              key={i}
+                              className="px-4 py-1.5 bg-bg rounded-sm text-primary text-xs"
                             >
-                              <img
-                                src={
-                                  actor.profile_path
-                                    ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                                    : "/placeholder.jpg"
-                                }
-                                alt={actor.name}
-                                className="w-24 h-24 object-cover rounded-full mb-2"
-                              />
-                              <p className="font-semibold">{actor.name}</p>
-                              <p className="text-sm text-gray-400">
-                                {actor.character}
-                              </p>
-                            </div>
+                              {p.name}
+                            </span>
                           ))}
                         </div>
-                      </div>
-                    ) : (
-                      <p>No hay datos del reparto.</p>
+                      </section>
                     )}
+                    {/* Idiomas hablados */}
+                    {movie.spoken_languages?.length > 0 && (
+                      <section>
+                        <h2 className="text-lg font-bold text-primary mb-4">
+                          Idiomas Hablados
+                        </h2>
+                        <div className="flex flex-wrap gap-2">
+                          {movie.spoken_languages.map((lang, i) => (
+                            <span
+                              key={i}
+                              className="px-4 py-1.5 bg-bg rounded-sm text-gray-300 text-xs"
+                            >
+                              {lang.name}
+                            </span>
+                          ))}
+                        </div>
+                      </section>
+                    )}
+                    <section>
+                      {credits?.cast?.length > 0 ? (
+                        <>
+                          <h2 className="text-lg font-bold text-primary mb-4">
+                            Reparto Principal
+                          </h2>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                            {credits.cast.slice(0, 10).map((actor) => (
+                              <div
+                                key={actor.id}
+                                className=" cursor-pointer flex flex-col items-center text-center bg-bg/60 p-4 rounded-2xl border border-transparent transition-all duration-300 hover:shadow-primary/10 hover:border-primary/40"
+                              >
+                                <img
+                                  src={
+                                    actor.profile_path
+                                      ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                                      : "/placeholder.jpg"
+                                  }
+                                  alt={actor.name}
+                                  className="w-24 h-24 object-cover rounded-full mb-3 border border-gray-700/50"
+                                />
+                                <p className="font-semibold text-primary text-base">
+                                  {actor.name}
+                                </p>
+                                <p className="text-sm text-third">
+                                  {actor.character}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <p className="text-gray-400">
+                          No hay datos del reparto.
+                        </p>
+                      )}
+                    </section>
                   </div>
                 )}
               </div>

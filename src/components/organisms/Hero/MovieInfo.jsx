@@ -52,7 +52,7 @@ export default function MovieInfo({ movie, genreMap, onOpenTrailer }) {
           </span>
         ))}
         <span className="text-xs sm:text-sm text-primary font-extrabold">
-          {movie.vote_count ? "+18" : ""}
+          {movie.adult ? "+18" : ""}
         </span>
       </div>
 

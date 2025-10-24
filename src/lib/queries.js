@@ -160,6 +160,7 @@ export const GET_MOVIE_DETAILS = gql`
       poster_path
       backdrop_path
       vote_average
+      adult
       genres {
         id
         name
