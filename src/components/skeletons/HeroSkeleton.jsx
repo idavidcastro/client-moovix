@@ -2,7 +2,7 @@ export default function HeroSkeleton() {
   return (
     <div className="relative animate-pulse">
       {/* Fondo del hero */}
-      <div className="flex items-end justify-start w-full h-[30vh] sm:h-[40vh] lg:h-screen px-[5%] lg:py-[10%]">
+      <div className="flex items-end justify-start w-full h-[30vh] lg:h-screen px-[5%] lg:py-[10%]">
         {/* Contenido simulado */}
         <div className="relative z-20">
           {/* Título */}

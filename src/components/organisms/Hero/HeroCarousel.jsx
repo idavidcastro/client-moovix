@@ -1,8 +1,17 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 import MovieInfo from "./MovieInfo";
 
 export default function HeroCarousel({ movies, genreMap, onOpenTrailer }) {
+  const navigate = useNavigate();
+
+  const handleSlideClick = (movieId) => {
+    if (window.innerWidth < 1024) {
+      navigate(`/movie/${movieId}`);
+    }
+  };
+
   return (
     <section>
       <Swiper
@@ -15,7 +24,10 @@ export default function HeroCarousel({ movies, genreMap, onOpenTrailer }) {
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <div className="flex items-end justify-start w-full h-[30vh] sm:h-[40vh] lg:h-screen px-[5%] lg:py-[10%]">
+            <div
+              className="flex items-end justify-start w-full h-[30vh] lg:h-screen px-[5%] lg:py-[10%] lg:cursor-default cursor-pointer"
+              onClick={() => handleSlideClick(movie.id)}
+            >
               <img
                 src={
                   movie.backdrop_path
