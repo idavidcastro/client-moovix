@@ -6,12 +6,12 @@ import {
   GET_TOP_RATED_MOVIES,
   GET_UPCOMING_MOVIES,
 } from "../../lib/queries";
-import NavBar from "../../components/organisms/NavBar";
-import Footer from "../../components/organisms/Footer";
-import TrailerModal from "../../components/organisms/Hero/TrailerModal";
-import MoviesGrid from "../../components/molecules/MoviesGrid";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
+import TrailerModal from "../home/components/TrailerModal";
+import MoviesGrid from "./components/MoviesGrid";
 import AllMoviesSkeleton from "../../components/skeletons/AllMoviesSkeleton";
-// import EmptyState from "../../components/molecules/EmptyState";
+// import EmptyState from "./components/EmptyState";
 
 export default function AllMovies() {
   const [searchParams] = useSearchParams();

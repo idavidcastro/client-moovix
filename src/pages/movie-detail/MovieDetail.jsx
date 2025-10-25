@@ -4,18 +4,19 @@ import {
   GET_MOVIE_CREDITS,
   GET_MOVIE_DETAILS,
   GET_MOVIE_IMAGES,
+  GET_MOVIE_REVIEWS,
+  GET_MOVIE_SIMILAR,
 } from "../../lib/queries";
 import { IoIosPlay } from "react-icons/io";
-import Btn from "../../components/atoms/Btn";
-import AddListBtn from "../../components/atoms/AddListBtn";
+import Btn from "../../components/Btn";
+import AddListBtn from "../../components/AddListBtn";
 import { useFavoriteMoviesStore } from "../../stores/favoriteMovies";
 import { useModal } from "../../hooks/useModal";
-import TrailerModal from "../../components/organisms/Hero/TrailerModal";
+import TrailerModal from "../home/components/TrailerModal";
 import { useState } from "react";
-import { GET_MOVIE_SIMILAR } from "../../lib/queries";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import CardMovie from "../../components/molecules/CardMovie";
+import CardMovie from "../../components/CardMovie";
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -43,11 +44,20 @@ export default function MovieDetail() {
     { variables: { id } }
   );
 
+  const {
+    data: reviewsData,
+    loading: loadingReviews,
+    error: errorReviews,
+  } = useQuery(GET_MOVIE_REVIEWS, {
+    variables: { id },
+  });
+
   const similarMovies = similarData?.movieSimilar || [];
 
   const movie = detailsData?.movieDetails;
   const credits = creditsData?.movieCredits;
   const director = credits?.crew?.find((m) => m.job === "Director");
+  const reviews = reviewsData?.movieReviews ?? [];
 
   const [activeTab, setActiveTab] = useState("similares");
   const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
@@ -173,7 +183,7 @@ export default function MovieDetail() {
             <div className="mt-8">
               {/* Estado para controlar el tab activo */}
               <div className="flex gap-4">
-                {["similares", "detalles"].map((tab) => (
+                {["similares", "detalles", "reseñas"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -183,7 +193,11 @@ export default function MovieDetail() {
                         : "text-third hover:text-primary"
                     }`}
                   >
-                    {tab === "similares" ? "Similares" : "Detalles"}
+                    {tab === "similares"
+                      ? "Similares"
+                      : tab === "detalles"
+                      ? "Detalles"
+                      : "Reseñas"}
                   </button>
                 ))}
               </div>
@@ -304,6 +318,99 @@ export default function MovieDetail() {
                         </p>
                       )}
                     </section>
+                  </div>
+                )}
+
+                {activeTab === "reseñas" && (
+                  <div className="mt-12">
+                    <h2 className="text-2xl font-semibold mb-4 text-white">
+                      Reseñas
+                    </h2>
+
+                    {loadingReviews && (
+                      <p className="text-gray-400">Cargando reseñas...</p>
+                    )}
+                    {errorReviews && (
+                      <p className="text-red-500">
+                        Error al cargar las reseñas.
+                      </p>
+                    )}
+
+                    {reviews.length > 0 ? (
+                      <div className="space-y-6">
+                        {reviews.map((review) => {
+                          const avatar =
+                            review.author_details?.avatar_path &&
+                            (review.author_details.avatar_path.startsWith(
+                              "/https"
+                            )
+                              ? review.author_details.avatar_path.slice(1)
+                              : `https://image.tmdb.org/t/p/w200${review.author_details.avatar_path}`);
+
+                          return (
+                            <div
+                              key={review.id}
+                              className="bg-gray-900/60 p-4 rounded-2xl border border-gray-800 shadow-md"
+                            >
+                              <div className="flex items-center gap-3 mb-3">
+                                {avatar ? (
+                                  <img
+                                    src={avatar}
+                                    alt={review.author}
+                                    className="w-10 h-10 rounded-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-sm text-gray-300">
+                                    {review.author[0]}
+                                  </div>
+                                )}
+
+                                <div>
+                                  <p className="font-semibold text-white">
+                                    {review.author}
+                                  </p>
+                                  {review.author_details?.rating && (
+                                    <p className="text-yellow-400 text-sm">
+                                      ⭐ {review.author_details.rating}/10
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+
+                              <p className="text-gray-300 text-sm leading-relaxed">
+                                {review.content.length > 600
+                                  ? review.content.slice(0, 600) + "..."
+                                  : review.content}
+                              </p>
+
+                              <div className="flex justify-between items-center mt-3 text-xs text-gray-500">
+                                <span>
+                                  {new Date(
+                                    review.created_at
+                                  ).toLocaleDateString("es-ES", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                  })}
+                                </span>
+                                <a
+                                  href={review.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-secondary hover:underline"
+                                >
+                                  Ver más →
+                                </a>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-gray-400 text-center">
+                        No hay reseñas disponibles para esta película.
+                      </p>
+                    )}
                   </div>
                 )}
               </div>

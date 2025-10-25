@@ -1,10 +1,10 @@
-import MoviesCarousel from "../../components/molecules/MoviesCarousel.jsx";
+import MoviesCarousel from "./components/MoviesCarousel.jsx";
 import {
   GET_POPULAR_MOVIES,
   GET_TOP_RATED_MOVIES,
   GET_UPCOMING_MOVIES,
 } from "../../lib/queries";
-import Hero from "../../components/organisms/Hero/index.jsx";
+import Hero from "./components/Hero.jsx";
 import useMoviesQuery from "../../hooks/useMoviesQuery";
 
 export default function Home() {

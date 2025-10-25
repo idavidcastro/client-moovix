@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "./CardMovie";
+import Card from "../../../components/CardMovie";
 import MenuLaptop from "./MenuLaptop";
 import MenuMobile from "./MenuMobile";
 

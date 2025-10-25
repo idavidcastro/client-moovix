@@ -4,8 +4,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import CardMovie from "./CardMovie";
-import MoviesCarouselSkeleton from "../skeletons/MoviesCarouselSkeleton";
+import CardMovie from "../../../components/CardMovie";
+import MoviesCarouselSkeleton from "../../../components/skeletons/MoviesCarouselSkeleton";
 
 export default function MoviesCarousel({
   title,

@@ -1,8 +1,8 @@
-import Btn from "../../atoms/Btn";
-import AddListBtn from "../../atoms/AddListBtn";
+import Btn from "../../../components/Btn";
+import AddListBtn from "../../../components/AddListBtn";
 import { FaStar } from "react-icons/fa";
 import { IoIosPlay } from "react-icons/io";
-import BtnInfo from "../../atoms/BtnInfo";
+import BtnInfo from "../../../components/BtnInfo";
 import { useFavoriteMoviesStore } from "../../../stores/favoriteMovies";
 import { useQuery } from "@apollo/client/react";
 import { GET_MOVIE_IMAGES } from "../../../lib/queries";

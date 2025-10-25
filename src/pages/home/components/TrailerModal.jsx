@@ -1,7 +1,7 @@
-import Modal from "../../atoms/Modal";
+import Modal from "../../../components/Modal";
 import { useQuery } from "@apollo/client/react";
 import { GET_MOVIE_VIDEOS } from "../../../lib/queries";
-import LoadingSpinner from "../../atoms/LoadingSpinner";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 export default function TrailerModal({ open, onClose, movie }) {
   const { data: videoData, loading } = useQuery(GET_MOVIE_VIDEOS, {

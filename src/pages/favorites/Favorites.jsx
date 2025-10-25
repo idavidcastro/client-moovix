@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useFavoriteMoviesStore } from "../../stores/favoriteMovies";
-import MoviesGrid from "../../components/molecules/MoviesGrid.jsx";
-import EmptyState from "../../components/molecules/EmptyState";
-import TrailerModal from "../../components/organisms/Hero/TrailerModal";
+import MoviesGrid from "../all-movies/components/MoviesGrid.jsx";
+import EmptyState from "./components/EmptyState";
+import TrailerModal from "../home/components/TrailerModal";
 
 function Favorites() {
   const favorites = useFavoriteMoviesStore((state) => state.favoriteMovies);

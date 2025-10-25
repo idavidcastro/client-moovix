@@ -204,26 +204,7 @@ export const GET_MOVIE_IMAGES = gql`
     }
   }
 `;
-// export const GET_MOVIE_SIMILAR = gql`
-//   query GetMovieSimilar($id: ID!) {
-//     movieSimilar(id: $id) {
-//       id
-//       title
-//       original_title
-//       overview
-//       release_date
-//       poster_path
-//       backdrop_path
-//       vote_average
-//       vote_count
-//       popularity
-//       adult
-//       genre_ids
-//       original_language
-//       video
-//     }
-//   }
-// `;
+
 export const GET_MOVIE_SIMILAR = gql`
   query GetMovieSimilar($id: ID!) {
     movieSimilar(id: $id) {
@@ -234,6 +215,25 @@ export const GET_MOVIE_SIMILAR = gql`
       release_date
       vote_average
       backdrop_path
+    }
+  }
+`;
+
+export const GET_MOVIE_REVIEWS = gql`
+  query GetMovieReviews($id: ID!) {
+    movieReviews(id: $id) {
+      id
+      author
+      content
+      created_at
+      updated_at
+      url
+      author_details {
+        name
+        username
+        avatar_path
+        rating
+      }
     }
   }
 `;

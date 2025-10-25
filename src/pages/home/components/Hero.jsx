@@ -3,7 +3,7 @@ import { GET_NOW_PLAYING_MOVIES, GET_MOVIE_GENRES } from "../../../lib/queries";
 import HeroCarousel from "./HeroCarousel";
 import TrailerModal from "./TrailerModal";
 import { useMemo, useState } from "react";
-import HeroSkeleton from "../../skeletons/HeroSkeleton";
+import HeroSkeleton from "../../../components/skeletons/HeroSkeleton";
 import { useModal } from "../../../hooks/useModal";
 
 export default function Hero() {

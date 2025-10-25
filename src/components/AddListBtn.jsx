@@ -1,5 +1,5 @@
 import { Check, Plus } from "lucide-react";
-import { useFavoriteMoviesStore } from "../../stores/favoriteMovies";
+import { useFavoriteMoviesStore } from "../stores/favoriteMovies";
 
 function AddListBtn({ movie, className = "", isFavorite }) {
   const addFavoriteMovie = useFavoriteMoviesStore(
